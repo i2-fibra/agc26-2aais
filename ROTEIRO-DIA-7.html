@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roteiro Dia 7 — AGC 2026 — i2 Fibra</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+:root {
+  --i2-amarelo: #F3C200;
+  --i2-verde: #0A9B84;
+  --i2-verde-escuro: #086B5C;
+  --i2-amarelo-ouro: #EDA000;
+  --i2-verde-claro: #09BD78;
+  --i2-branco: #FFFFFF;
+  --i2-preto: #000000;
+  --i2-texto: #1E2322;
+  --i2-off-white: #F5F5F5;
+  --i2-cinza: #666666;
+  --i2-font-body: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --i2-font-display: 'Bebas Neue', 'Helvetica Condensed', Impact, sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--i2-font-body);
+  font-size: 16px; line-height: 1.55;
+  color: var(--i2-texto);
+  background: var(--i2-off-white);
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 800px; margin: 0 auto; background: var(--i2-branco); min-height: 100vh; box-shadow: 0 0 40px rgba(0,0,0,0.06); }
+
+/* HEADER */
+.hero {
+  background: linear-gradient(135deg, var(--i2-verde) 0%, var(--i2-verde-escuro) 100%);
+  color: var(--i2-branco); padding: 28px 24px 32px;
+  position: relative; overflow: hidden;
+}
+.hero::after {
+  content: ""; position: absolute; right: -60px; top: -40px;
+  width: 280px; height: 280px;
+  background: var(--i2-amarelo); opacity: 0.08;
+  border-radius: 50%; pointer-events: none;
+}
+.hero-top { display: flex; align-items: center; gap: 16px; margin-bottom: 16px; position: relative; z-index: 1; }
+.logo { width: 56px; height: 56px; flex-shrink: 0; background: transparent; display: block; }
+.hero-meta { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--i2-amarelo); font-weight: 700; }
+.hero-title {
+  font-family: var(--i2-font-display);
+  font-size: clamp(2rem, 7vw, 3rem);
+  letter-spacing: 0.02em; line-height: 1; margin-top: 6px;
+  position: relative; z-index: 1;
+}
+.hero-title span { color: var(--i2-amarelo); }
+.hero-sub { margin-top: 12px; font-size: 16px; opacity: 0.95; position: relative; z-index: 1; }
+.hero-tags { margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap; position: relative; z-index: 1; }
+.tag {
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.25);
+  color: var(--i2-branco); padding: 5px 12px;
+  border-radius: 999px; font-size: 12px; font-weight: 600;
+}
+.priority-banner {
+  background: var(--i2-amarelo); color: var(--i2-preto);
+  padding: 14px 24px; font-weight: 700; font-size: 14px;
+  border-bottom: 3px solid var(--i2-amarelo-ouro);
+  display: flex; gap: 10px; align-items: flex-start;
+}
+.priority-banner::before { content: "⭐"; font-size: 18px; flex-shrink: 0; }
+
+/* CONTEÚDO */
+.content { padding: 24px; }
+
+/* SLOT */
+.slot { margin-bottom: 28px; }
+.slot-header {
+  display: flex; align-items: baseline; gap: 14px;
+  border-bottom: 3px solid var(--i2-amarelo);
+  padding-bottom: 8px; margin-bottom: 14px;
+}
+.slot-time {
+  font-family: var(--i2-font-display);
+  font-size: clamp(1.7rem, 5vw, 2.2rem);
+  letter-spacing: 0.02em;
+  color: var(--i2-verde); line-height: 1;
+}
+.slot-title { font-size: 16px; font-weight: 700; color: var(--i2-texto); flex: 1; }
+.slot-stars { color: var(--i2-amarelo-ouro); font-size: 14px; }
+.slot-body { font-size: 15px; }
+.slot-body p { margin-bottom: 10px; }
+.slot-body strong { color: var(--i2-verde); }
+
+/* PAINEL OBRIGATÓRIO (verde) */
+.panel-card {
+  background: linear-gradient(135deg, var(--i2-verde) 0%, var(--i2-verde-escuro) 100%);
+  color: var(--i2-branco);
+  border-radius: 16px; padding: 22px;
+  margin: 12px 0;
+  position: relative; overflow: hidden;
+}
+.panel-card::before {
+  content: ""; position: absolute; left: 0; top: 0; bottom: 0;
+  width: 6px; background: var(--i2-amarelo);
+}
+.panel-card-tag {
+  display: inline-block; background: var(--i2-amarelo); color: var(--i2-preto);
+  font-size: 11px; font-weight: 700; padding: 4px 10px;
+  border-radius: 999px; letter-spacing: 0.05em;
+  text-transform: uppercase; margin-bottom: 10px;
+}
+.panel-card-title {
+  font-family: var(--i2-font-display);
+  font-size: clamp(1.3rem, 4vw, 1.7rem);
+  letter-spacing: 0.02em; line-height: 1.15;
+  margin-bottom: 8px;
+}
+.panel-card-meta { font-size: 13px; opacity: 0.9; margin-bottom: 8px; }
+.panel-card-meta strong { color: var(--i2-amarelo); }
+.panel-card-body { font-size: 14px; }
+.panel-card ul { margin-top: 8px; padding-left: 20px; }
+.panel-card ul li { margin-bottom: 4px; }
+
+/* PAINEL DESTAQUE OURO */
+.panel-card-gold {
+  background: var(--i2-amarelo);
+  color: var(--i2-preto);
+}
+.panel-card-gold::before { background: var(--i2-verde); }
+.panel-card-gold .panel-card-tag {
+  background: var(--i2-verde); color: var(--i2-branco);
+}
+.panel-card-gold .panel-card-meta { opacity: 1; color: var(--i2-texto); }
+.panel-card-gold .panel-card-meta strong { color: var(--i2-verde); }
+
+/* SPLIT BOX */
+.split-box {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 12px; margin: 12px 0;
+}
+.split-card {
+  background: var(--i2-off-white);
+  border-radius: 12px; padding: 16px;
+  border-top: 4px solid var(--i2-verde);
+}
+.split-card.alt { border-top-color: var(--i2-amarelo); }
+.split-card .who {
+  font-family: var(--i2-font-display);
+  font-size: 1.4rem; letter-spacing: 0.02em;
+  color: var(--i2-verde); margin-bottom: 6px;
+}
+.split-card.alt .who { color: var(--i2-amarelo-ouro); }
+.split-card .what { font-size: 14px; }
+
+/* TABELA */
+table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 14px; }
+table th, table td {
+  text-align: left; padding: 10px 12px;
+  border-bottom: 1px solid #E5E5E5; vertical-align: top;
+}
+table th {
+  background: var(--i2-off-white); font-weight: 700;
+  color: var(--i2-verde); font-size: 12px;
+  letter-spacing: 0.04em; text-transform: uppercase;
+}
+table td.estande {
+  font-family: var(--i2-font-display); font-size: 1.2rem;
+  color: var(--i2-amarelo-ouro); font-weight: 700;
+  width: 70px; letter-spacing: 0.04em;
+}
+table td.empresa { font-weight: 700; color: var(--i2-verde); }
+
+/* CALLOUT */
+.callout {
+  background: var(--i2-off-white);
+  border-left: 4px solid var(--i2-amarelo);
+  padding: 14px 16px; margin: 12px 0;
+  border-radius: 6px; font-size: 14px;
+}
+.callout-warn { background: #FFF4F4; border-left-color: #D14B4B; }
+.callout-warn::before { content: "⚠️ "; }
+.callout-good { background: #F0FBF7; border-left-color: var(--i2-verde-claro); }
+
+/* CHECKLIST */
+.checklist {
+  background: var(--i2-off-white);
+  border-radius: 12px; padding: 20px; margin-top: 28px;
+}
+.checklist h3 {
+  font-family: var(--i2-font-display);
+  font-size: 1.6rem; letter-spacing: 0.02em;
+  color: var(--i2-verde); margin-bottom: 12px;
+}
+.checklist h4 {
+  color: var(--i2-amarelo-ouro); font-size: 13px;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  margin-top: 14px; margin-bottom: 4px;
+}
+.checklist h4:first-of-type { margin-top: 0; }
+.checklist label {
+  display: flex; gap: 12px; padding: 8px 0;
+  cursor: pointer; user-select: none;
+  border-bottom: 1px dashed #DDD; font-size: 14px;
+}
+.checklist label:last-child { border-bottom: none; }
+.checklist input[type="checkbox"] {
+  width: 22px; height: 22px;
+  accent-color: var(--i2-verde);
+  flex-shrink: 0; margin-top: 2px;
+}
+.checklist input:checked + span { text-decoration: line-through; opacity: 0.5; }
+
+/* FOOTER */
+.foot {
+  background: var(--i2-preto); color: var(--i2-branco);
+  padding: 24px; text-align: center; font-size: 13px;
+}
+.foot strong { color: var(--i2-amarelo); }
+.foot a { color: var(--i2-amarelo); text-decoration: none; }
+
+/* NAV */
+.nav-link {
+  display: inline-block; background: var(--i2-amarelo);
+  color: var(--i2-preto); padding: 12px 22px;
+  border-radius: 12px; font-weight: 700;
+  text-decoration: none; margin: 16px 8px 8px 0;
+}
+.nav-link.secondary { background: var(--i2-off-white); color: var(--i2-verde); border: 2px solid var(--i2-verde); }
+.nav-link:hover { background: var(--i2-amarelo-ouro); }
+
+/* RESPONSIVO */
+@media (max-width: 600px) {
+  .content { padding: 18px; }
+  .hero { padding: 22px 18px 26px; }
+  table th, table td { padding: 8px 6px; font-size: 13px; }
+  table td.estande { width: 56px; font-size: 1rem; }
+  .slot-header { flex-wrap: wrap; gap: 8px; }
+  .split-box { grid-template-columns: 1fr; }
+}
+
+/* PRINT */
+@media print {
+  body { background: white; }
+  .wrap { box-shadow: none; }
+  .hero, .panel-card, .priority-banner { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .nav-link, .foot a { display: none; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- HEADER -->
+<header class="hero">
+  <div class="hero-top">
+    <svg class="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 890 975" aria-label="i2 Fibra"><path fill="#F3C200" fill-rule="evenodd" d="M 171.00,971.50 L 148.00,971.50 L 147.00,970.50 L 139.00,970.50 L 119.00,966.50 L 104.00,961.50 L 87.00,953.50 L 62.00,936.50 L 42.50,917.00 L 26.50,894.00 L 14.50,867.00 L 10.50,852.00 L 8.50,834.00 L 7.50,833.00 L 7.50,146.00 L 8.50,145.00 L 9.50,131.00 L 17.50,103.00 L 25.50,86.00 L 33.50,73.00 L 43.50,60.00 L 61.00,42.50 L 82.00,27.50 L 110.00,14.50 L 140.00,7.50 L 158.00,7.50 L 159.00,6.50 L 161.00,7.50 L 179.00,7.50 L 199.00,11.50 L 217.00,17.50 L 236.00,26.50 L 253.00,37.50 L 357.00,96.50 L 364.00,101.50 L 624.00,250.50 L 787.00,345.50 L 814.00,359.50 L 833.00,373.50 L 848.50,389.00 L 864.50,411.00 L 874.50,431.00 L 879.50,445.00 L 885.50,477.00 L 885.50,502.00 L 884.50,503.00 L 883.50,517.00 L 881.50,522.00 L 880.50,530.00 L 872.50,552.00 L 861.50,572.00 L 849.50,588.00 L 832.00,605.50 L 823.00,612.50 L 792.00,631.50 L 759.00,649.50 L 752.00,654.50 L 686.00,691.50 L 679.00,696.50 L 613.00,733.50 L 606.00,738.50 L 580.00,752.50 L 573.00,757.50 L 507.00,794.50 L 500.00,799.50 L 434.00,836.50 L 427.00,841.50 L 361.00,878.50 L 234.00,952.50 L 215.00,961.50 L 200.00,966.50 L 180.00,970.50 L 172.00,970.50 L 171.00,971.50 Z"/><path fill="#FFFFFF" fill-rule="evenodd" d="M 170.00,355.50 L 157.00,355.50 L 142.00,349.50 L 131.50,338.00 L 127.50,327.00 L 127.50,314.00 L 130.50,304.00 L 133.50,299.00 L 145.00,288.50 L 156.00,284.50 L 171.00,284.50 L 182.00,288.50 L 189.00,293.50 L 193.50,299.00 L 197.50,306.00 L 199.50,313.00 L 199.50,328.00 L 194.50,340.00 L 189.00,346.50 L 182.00,351.50 L 170.00,355.50 Z M 443.00,690.50 L 438.00,690.50 L 434.00,688.50 L 429.50,684.00 L 428.50,682.00 L 429.00,667.50 L 224.50,667.00 L 224.50,637.00 L 382.50,475.00 L 397.50,456.00 L 409.50,437.00 L 417.50,419.00 L 421.50,404.00 L 421.50,398.00 L 422.50,397.00 L 421.50,376.00 L 418.50,366.00 L 411.50,353.00 L 402.00,342.50 L 394.00,336.50 L 382.00,330.50 L 368.00,326.50 L 362.00,326.50 L 361.00,325.50 L 334.00,326.50 L 319.00,330.50 L 305.00,337.50 L 299.00,341.50 L 281.50,360.00 L 272.50,377.00 L 269.00,388.50 L 226.00,374.50 L 225.50,371.00 L 231.50,355.00 L 238.50,342.00 L 246.50,331.00 L 263.00,314.50 L 271.00,308.50 L 298.00,294.50 L 318.00,288.50 L 328.00,287.50 L 329.00,286.50 L 338.00,286.50 L 339.00,285.50 L 373.00,286.50 L 389.00,289.50 L 405.00,294.50 L 423.00,303.50 L 439.00,315.50 L 449.50,327.00 L 455.50,336.00 L 463.50,353.00 L 468.50,376.00 L 467.50,408.00 L 460.50,433.00 L 454.50,447.00 L 446.50,461.00 L 432.50,481.00 L 415.50,501.00 L 292.50,628.00 L 434.00,628.50 L 435.50,625.00 L 435.50,619.00 L 438.50,613.00 L 448.00,606.50 L 455.00,606.50 L 503.00,636.50 L 508.50,643.00 L 508.50,650.00 L 504.50,657.00 L 501.00,659.50 L 443.00,690.50 Z M 186.00,694.50 L 142.00,694.50 L 140.50,693.00 L 141.00,408.50 L 186.50,409.00 L 186.00,694.50 Z M 540.00,540.50 L 527.50,540.00 L 527.00,474.50 L 505.50,475.00 L 505.50,540.00 L 493.50,540.00 L 493.50,476.00 L 492.00,474.50 L 481.50,474.00 L 481.50,463.00 L 493.00,462.50 L 493.50,454.00 L 497.50,444.00 L 504.00,437.50 L 516.00,433.50 L 540.50,434.00 L 540.00,445.50 L 518.00,445.50 L 514.00,446.50 L 507.50,452.00 L 505.50,459.00 L 506.00,462.50 L 539.00,462.50 L 540.50,464.00 L 540.00,540.50 Z M 601.00,542.50 L 593.00,542.50 L 581.00,539.50 L 574.00,535.50 L 569.00,530.50 L 568.00,540.50 L 555.50,540.00 L 556.00,435.50 L 568.50,436.00 L 569.00,471.50 L 579.00,463.50 L 587.00,460.50 L 593.00,460.50 L 594.00,459.50 L 606.00,460.50 L 615.00,463.50 L 623.00,468.50 L 630.50,476.00 L 636.50,487.00 L 638.50,495.00 L 638.50,507.00 L 636.50,515.00 L 632.50,523.00 L 619.00,536.50 L 613.00,539.50 L 601.00,542.50 Z M 661.00,540.50 L 649.50,540.00 L 649.50,462.00 L 661.00,461.50 L 661.50,467.00 L 663.00,467.50 L 671.00,461.50 L 683.00,459.50 L 683.50,473.00 L 675.00,474.50 L 668.00,478.50 L 662.50,488.00 L 661.00,540.50 Z M 734.00,542.50 L 725.00,542.50 L 713.00,539.50 L 704.00,534.50 L 695.50,526.00 L 690.50,517.00 L 687.50,506.00 L 687.50,496.00 L 690.50,485.00 L 696.50,475.00 L 703.00,468.50 L 716.00,461.50 L 726.00,460.50 L 727.00,459.50 L 739.00,460.50 L 751.00,465.50 L 757.00,471.50 L 758.50,471.00 L 759.00,461.50 L 770.00,461.50 L 770.50,540.00 L 759.00,540.50 L 758.00,530.50 L 751.00,536.50 L 743.00,540.50 L 734.00,542.50 Z M 602.50,530.00 L 606.00,529.50 L 614.00,525.50 L 622.50,516.00 L 625.50,508.00 L 625.50,495.00 L 619.50,482.00 L 612.00,475.50 L 605.00,472.50 L 592.00,471.50 L 580.00,476.50 L 572.50,484.00 L 567.50,497.00 L 567.50,506.00 L 570.50,515.00 L 575.50,522.00 L 580.00,525.50 L 591.00,530.50 L 602.50,530.00 Z M 735.50,530.00 L 745.00,526.50 L 754.50,517.00 L 758.50,507.00 L 757.50,492.00 L 753.50,484.00 L 746.00,476.50 L 741.00,473.50 L 734.00,471.50 L 721.00,472.50 L 709.00,479.50 L 704.50,485.00 L 700.50,495.00 L 701.50,511.00 L 705.50,519.00 L 714.00,526.50 L 724.00,530.50 L 735.50,530.00 Z"/></svg>
+    <div>
+      <div class="hero-meta">AGC 2026 — Distrito Anhembi</div>
+      <h1 class="hero-title">Roteiro <span>Dia 7</span></h1>
+    </div>
+  </div>
+  <p class="hero-sub">Quarta, 7 de maio · Cleiberson + Patrick · dia completo</p>
+  <div class="hero-tags">
+    <span class="tag">⚙️ Automação</span>
+    <span class="tag">🛡️ DDoS</span>
+    <span class="tag">📊 Observabilidade</span>
+    <span class="tag">🔬 IA preditiva</span>
+  </div>
+</header>
+
+<div class="priority-banner">
+  Dia principal. OLT é Huawei → ZTE Summit (14h) <strong style="color: var(--i2-verde);">não é obrigação</strong>. Tarde livre para estandes.
+</div>
+
+<!-- CONTEÚDO -->
+<div class="content">
+
+  <!-- 9:00 -->
+  <div class="slot">
+    <div class="slot-header">
+      <div class="slot-time">09:00</div>
+      <div class="slot-title">Chegada antecipada — estandes sem fila</div>
+    </div>
+    <div class="slot-body">
+      <p>Manhã cedo = menos fila. Completar pendências do dia 6:</p>
+      <table>
+        <thead><tr><th>★</th><th>Estande</th><th>Empresa</th><th>Foco</th></tr></thead>
+        <tbody>
+          <tr><td><span class="slot-stars">★★★</span></td><td class="estande">B13</td><td class="empresa">AVSystem</td><td>ACS TR-369 + auto-discovery (Huawei)</td></tr>
+          <tr><td><span class="slot-stars">★★★</span></td><td class="estande">B14</td><td class="empresa">Inatel</td><td>FibrIA, inventário, monitoramento preditivo</td></tr>
+          <tr><td><span class="slot-stars">★★★</span></td><td class="estande">A04</td><td class="empresa">Auben Networks</td><td>Observabilidade + mapa topológico (preparar p/ painel das 15h)</td></tr>
+        </tbody>
+      </table>
+      <div class="callout">Se já visitaram dia 6: usar este horário para MVNO ou backbone.</div>
+    </div>
+  </div>
+
+  <!-- 10:00 -->
+  <div class="slot">
+    <div class="slot-header">
+      <div class="slot-time">10:00</div>
+      <div class="slot-title">Painel 1 <span class="slot-stars">★★</span></div>
+    </div>
+    <div class="panel-card">
+      <span class="panel-card-tag">IA estratégica</span>
+      <h3 class="panel-card-title">IA como vetor estratégico para ISPs</h3>
+      <div class="panel-card-meta"><strong>Ranyeri do Lago Rocha (Inatel)</strong> · Área Azul · 10:00–10:50</div>
+      <div class="panel-card-body">
+        <p>Mesma empresa que está no estande B14 (FibrIA). Anotar: casos de uso reais já implementados em ISPs brasileiros.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 11:00 OBRIGATÓRIO -->
+  <div class="slot">
+    <div class="slot-header">
+      <div class="slot-time">11:00</div>
+      <div class="slot-title">Painel 2 — JUNTOS, OBRIGATÓRIO <span class="slot-stars">★★★</span></div>
+    </div>
+    <div class="panel-card panel-card-gold">
+      <span class="panel-card-tag">Dor #2 — DDoS</span>
+      <h3 class="panel-card-title">Mitigação de DDoS</h3>
+      <div class="panel-card-meta">Wanguard · NetFlow · IPFIX · BGP Flowspec<br><strong>Raphael Rodrigues (Flowspec Solutions)</strong> · Plenária Conectividade · 11:00–11:50</div>
+      <div class="panel-card-body">
+        <p style="margin-top: 8px;"><strong>O que observar:</strong></p>
+        <ul>
+          <li>Quais ISPs de porte 5–15k clientes já implementaram</li>
+          <li>Como é a migração sem interrupção de serviço</li>
+          <li>Modelo de licença vs. appliance vs. cloud</li>
+        </ul>
+        <p style="margin-top: 10px;"><strong>⚠️ No painel ou depois: NÃO mencionar Huge Networks.</strong></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 12:00 -->
+  <div class="slot">
+    <div class="slot-header">
+      <div class="slot-time">12:00</div>
+      <div class="slot-title">Painel 3 <span class="slot-stars">★★</span></div>
+    </div>
+    <div class="panel-card">
+      <span class="panel-card-tag">Padrões abertos · TR-369</span>
+      <h3 class="panel-card-title">Vendor lock-in e padrões abertos</h3>
+      <div class="panel-card-meta"><strong>Anlix + Broadband Forum + G3 Telecom</strong> · Plenária Conectividade · 12:00–12:50</div>
+      <div class="panel-card-body">
+        <p><strong>Perguntas após o painel</strong> (procurar Anlix ou BBF):</p>
+        <ul>
+          <li>"TR-369 tem auto-discovery de ONUs em OLT Huawei?"</li>
+          <li>"Custo de migração TR-069 → TR-369?"</li>
+        </ul>
+        <p style="margin-top: 8px;"><strong>Patrick (paralelo):</strong> visitar A04 Auben se ainda não foi, ou backbone.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 12:50 ALMOÇO -->
+  <div class="slot">
+    <div class="slot-header">
+      <div class="slot-time">12:50<span style="font-size: 0.6em; opacity: 0.6;"> – 14:00</span></div>
+      <div class="slot-title">Almoço + estandes (vendedores com tempo livre)</div>
+    </div>
+    <div class="slot-body">
+      <table>
+        <tbody>
+          <tr><td class="estande">B13</td><td class="empresa">AVSystem</td><td>Fechar conversa sobre auto-discovery</td></tr>
+          <tr><td class="estande">B14</td><td class="empresa">Inatel</td><td>FibrIA demo, inventário</td></tr>
+          <tr><td class="estande">B08</td><td class="empresa">Padtec</td><td>Backbone óptico (rápido)</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 14:00 SPLIT -->
+  <div class="slot">
+    <div class="slot-header">
+      <div class="slot-time">14:00</div>
+      <div class="slot-title">SPLIT — Cleiberson e Patrick <span class="slot-stars">★★</span></div>
+    </div>
+    <div class="split-box">
+      <div class="split-card">
+        <div class="who">Cleiberson</div>
+        <div class="what"><strong>Painel:</strong> Cyber resilience<br>Sérgio Simas (Forte Telecom)<br>Plenária Inovação · 50 min</div>
+      </div>
+      <div class="split-card alt">
+        <div class="who">Patrick</div>
+        <div class="what"><strong>Estandes:</strong><br>C04 Alares (DDoS, sem citar Huge)<br>+ backbone: E08, G18, I06, H20 (5 min cada)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 15:00 OBRIGATÓRIO -->
+  <div class="slot">
+    <div class="slot-header">
+      <div class="slot-time">15:00</div>
+      <div class="slot-title">Painel 5 — JUNTOS, OBRIGATÓRIO <span class="slot-stars">★★★</span></div>
+    </div>
+    <div class="panel-card panel-card-gold">
+      <span class="panel-card-tag">Dor #3 — observabilidade</span>
+      <h3 class="panel-card-title">Observabilidade de redes</h3>
+      <div class="panel-card-meta"><strong>Guillermo Trigo (Auben Networks)</strong> · Plenária Inovação · 15:00–16:00</div>
+      <div class="panel-card-body">
+        <p><strong>O que observar:</strong></p>
+        <ul>
+          <li>Onboarding migrando de SNMP básico</li>
+          <li>Integração nativa com OLT Huawei</li>
+          <li>Quanto tempo até visibilidade completa</li>
+          <li>Modelo SaaS vs. on-prem</li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout callout-good">
+      <strong>Após o painel:</strong> abordar Guillermo Trigo pessoalmente. Como palestrante, ele é mais aberto a conversa técnica do que o booth genérico.
+    </div>
+  </div>
+
+  <!-- 15:15 OPCIONAL -->
+  <div class="slot">
+    <div class="slot-header">
+      <div class="slot-time">15:15</div>
+      <div class="slot-title">CEO Talk <span class="slot-stars">opcional · Cleiberson</span></div>
+    </div>
+    <div class="slot-body">
+      <p><strong>Palco Principal 360°</strong> — 5 CEOs de provedores: Gustavo Stock, Breno Vale, Denis Ferreira, Fabiano Ferreira, Patrick Canton.</p>
+      <div class="callout">Algar está aqui — oportunidade de networking com CEO. <strong>Não revelar dados estratégicos da i2</strong> (M&amp;A ativo).</div>
+    </div>
+  </div>
+
+  <!-- 16:00 ESTANDES RESTANTES -->
+  <div class="slot">
+    <div class="slot-header">
+      <div class="slot-time">16:00<span style="font-size: 0.6em; opacity: 0.6;"> – 18:00</span></div>
+      <div class="slot-title">Bloco de estandes restantes</div>
+    </div>
+    <div class="slot-body">
+      <p><strong>Cluster MVNO — percurso em sequência (20-25 min):</strong></p>
+      <table>
+        <tbody>
+          <tr><td class="estande">F05</td><td class="empresa">Surf</td><td rowspan="4">"Como funciona o modelo para provedor de 9k clientes em Goiás? Mínimo de chips? Margem estimada?"</td></tr>
+          <tr><td class="estande">F15</td><td class="empresa">TIP</td></tr>
+          <tr><td class="estande">G02</td><td class="empresa">Bora</td></tr>
+          <tr><td class="estande">I11</td><td class="empresa">Braz Móvel</td></tr>
+        </tbody>
+      </table>
+      <p style="margin-top: 14px;"><strong>Outras paradas:</strong></p>
+      <table>
+        <tbody>
+          <tr><td class="empresa">Wi-Fi premium</td><td>Distribuidores com Wi-Fi 6E/7 — Wi-Fi gerenciado para PME corporativo</td></tr>
+          <tr><td class="empresa">Time is Money</td><td>Cobrança — visita rápida obrigatória (10 min)</td></tr>
+          <tr><td class="estande">A22</td><td class="empresa">Elea Data Centers</td><td>Colocation neutro · pós-M&amp;A I Squared (US$ 10bi)</td></tr>
+          <tr><td class="estande">B36</td><td class="empresa">Venko</td><td>IA aplicada (10 min, se der tempo)</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 17:00 OPCIONAL -->
+  <div class="slot">
+    <div class="slot-header">
+      <div class="slot-time">17:00</div>
+      <div class="slot-title">Painel <span class="slot-stars">opcional</span></div>
+    </div>
+    <div class="slot-body">
+      <p><strong>"IA e maturidade regulatória"</strong> — Paulo Tobias, Alda Rodrigues (Anatel) · Plenária Inovação. Se ainda tiverem energia.</p>
+    </div>
+  </div>
+
+  <!-- 17:50 -->
+  <div class="slot">
+    <div class="slot-header">
+      <div class="slot-time">17:50</div>
+      <div class="slot-title">Síntese do dia (obrigatório)</div>
+    </div>
+    <div class="slot-body">
+      <ul style="padding-left: 20px;">
+        <li><strong>Áudio 1 (2-3 min):</strong> descobertas do dia, empresas interessantes, decisões</li>
+        <li><strong>Áudio 2:</strong> insights técnicos específicos (automação, DDoS, observabilidade)</li>
+        <li><strong>Áudio 3:</strong> empresas para follow-up — nome, estande, pendências</li>
+        <li>Enviar tudo para Gabriel no WhatsApp</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 19:30 -->
+  <div class="slot">
+    <div class="slot-header">
+      <div class="slot-time">19:30</div>
+      <div class="slot-title">Show Capital Inicial <span class="slot-stars">opcional</span></div>
+    </div>
+    <div class="slot-body">
+      <p>Palco Principal — networking informal.</p>
+    </div>
+  </div>
+
+  <!-- ALERTAS -->
+  <div class="callout callout-warn">
+    <strong>Huge Networks</strong> — não citar para ninguém de DDoS/segurança. Falar: <em>"Estamos avaliando opções."</em>
+  </div>
+  <div class="callout callout-warn">
+    <strong>Algar / Alares</strong> — não revelar dados estratégicos (M&amp;A ativo).
+  </div>
+  <div class="callout callout-warn">
+    <strong>Computize G23</strong> — só ouvir, não contratar (Krebs on Security).
+  </div>
+  <div class="callout callout-good">
+    <strong>App AGC</strong> — leitor de QR para capturar contato em 1 clique. Usar em todos os estandes.
+  </div>
+
+  <!-- CHECKLIST -->
+  <div class="checklist">
+    <h3>Checklist do dia 7</h3>
+
+    <h4>Painéis</h4>
+    <label><input type="checkbox"><span>10h — IA como vetor estratégico (Inatel)</span></label>
+    <label><input type="checkbox"><span>11h — DDoS/Wanguard/Flowspec ★★★ obrigatório</span></label>
+    <label><input type="checkbox"><span>12h — Vendor lock-in e padrões abertos</span></label>
+    <label><input type="checkbox"><span>14h — Cyber resilience (Cleiberson)</span></label>
+    <label><input type="checkbox"><span>15h — Observabilidade ★★★ obrigatório</span></label>
+
+    <h4>Estandes</h4>
+    <label><input type="checkbox"><span>AVSystem B13 — pergunta de auto-discovery</span></label>
+    <label><input type="checkbox"><span>Auben Networks A04</span></label>
+    <label><input type="checkbox"><span>Inatel B14 (FibrIA)</span></label>
+    <label><input type="checkbox"><span>Alares C04 — DDoS (sem citar Huge)</span></label>
+    <label><input type="checkbox"><span>Time is Money — cobrança</span></label>
+    <label><input type="checkbox"><span>Backbone: E08, G16, G18 (preço)</span></label>
+    <label><input type="checkbox"><span>MVNO cluster: F05, F15, G02, I11</span></label>
+
+    <h4>Captura</h4>
+    <label><input type="checkbox"><span>3 áudios de síntese gravados</span></label>
+    <label><input type="checkbox"><span>Áudios enviados para Gabriel</span></label>
+  </div>
+
+  <a href="ROTEIRO-DIA-6.html" class="nav-link secondary">← Dia 6</a>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="foot">
+  <p><strong>i2 Fibra</strong> — Vamos juntos crescer e conectar pessoas.</p>
+  <p style="margin-top: 6px; opacity: 0.7;">AGC 2026 · Distrito Anhembi · Pavilhões 4 e 5</p>
+</footer>
+
+</div>
+</body>
+</html>
