@@ -2,547 +2,1097 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Roteiro Dia 7 — AGC 2026 — i2 Fibra</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
+<meta name="theme-color" content="#000000">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>Dia 7 · AGC 2026 · i2</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root {
   --i2-amarelo: #F3C200;
+  --i2-amarelo-dim: rgba(243, 194, 0, 0.5);
   --i2-verde: #0A9B84;
-  --i2-verde-escuro: #086B5C;
-  --i2-amarelo-ouro: #EDA000;
-  --i2-verde-claro: #09BD78;
-  --i2-branco: #FFFFFF;
-  --i2-preto: #000000;
-  --i2-texto: #1E2322;
-  --i2-off-white: #F5F5F5;
-  --i2-cinza: #666666;
-  --i2-font-body: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  --i2-font-display: 'Bebas Neue', 'Helvetica Condensed', Impact, sans-serif;
+  --i2-verde-claro: #34D399;
+  --i2-verde-glow: rgba(52, 211, 153, 0.35);
+  --i2-verde-deep: #0A4A40;
+  --i2-bg: #000000;
+  --i2-bg-card: #0A1410;
+  --i2-bg-elev: #0F1C18;
+  --i2-border: rgba(52, 211, 153, 0.15);
+  --i2-border-bright: rgba(52, 211, 153, 0.4);
+  --i2-text: #E8F4EC;
+  --i2-text-dim: #A3B8AE;
+  --i2-text-mute: #5A6F66;
+  --i2-danger: #FF6B6B;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', Menlo, monospace;
 }
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+html { background: var(--i2-bg); -webkit-text-size-adjust: 100%; }
 body {
-  font-family: var(--i2-font-body);
+  font-family: var(--font-body);
   font-size: 16px; line-height: 1.55;
-  color: var(--i2-texto);
-  background: var(--i2-off-white);
+  color: var(--i2-text);
+  background:
+    radial-gradient(ellipse 600px 400px at top, rgba(10, 155, 132, 0.12) 0%, transparent 100%),
+    var(--i2-bg);
+  background-attachment: fixed;
   -webkit-font-smoothing: antialiased;
+  padding-bottom: 70px;
+  overflow-x: hidden;
 }
-.wrap { max-width: 800px; margin: 0 auto; background: var(--i2-branco); min-height: 100vh; box-shadow: 0 0 40px rgba(0,0,0,0.06); }
+.wrap { max-width: 100%; padding: 0 14px; }
+@media (min-width: 700px) { .wrap { max-width: 720px; margin: 0 auto; } }
 
-/* HEADER */
-.hero {
-  background: linear-gradient(135deg, var(--i2-verde) 0%, var(--i2-verde-escuro) 100%);
-  color: var(--i2-branco); padding: 28px 24px 32px;
-  position: relative; overflow: hidden;
+/* ============ HERO ============ */
+.hero { padding: 22px 0 16px; }
+.hero-top {
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 18px;
 }
-.hero::after {
-  content: ""; position: absolute; right: -60px; top: -40px;
-  width: 280px; height: 280px;
-  background: var(--i2-amarelo); opacity: 0.08;
-  border-radius: 50%; pointer-events: none;
+.logo { width: 36px; height: 36px; background: transparent; flex-shrink: 0; }
+.brand {
+  font-family: var(--font-mono); font-size: 10px;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--i2-verde-claro);
 }
-.hero-top { display: flex; align-items: center; gap: 16px; margin-bottom: 16px; position: relative; z-index: 1; }
-.logo { width: 56px; height: 56px; flex-shrink: 0; background: transparent; display: block; }
-.hero-meta { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--i2-amarelo); font-weight: 700; }
-.hero-title {
-  font-family: var(--i2-font-display);
-  font-size: clamp(2rem, 7vw, 3rem);
-  letter-spacing: 0.02em; line-height: 1; margin-top: 6px;
-  position: relative; z-index: 1;
-}
-.hero-title span { color: var(--i2-amarelo); }
-.hero-sub { margin-top: 12px; font-size: 16px; opacity: 0.95; position: relative; z-index: 1; }
-.hero-tags { margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap; position: relative; z-index: 1; }
-.tag {
-  background: rgba(255,255,255,0.12);
-  border: 1px solid rgba(255,255,255,0.25);
-  color: var(--i2-branco); padding: 5px 12px;
-  border-radius: 999px; font-size: 12px; font-weight: 600;
-}
-.priority-banner {
-  background: var(--i2-amarelo); color: var(--i2-preto);
-  padding: 14px 24px; font-weight: 700; font-size: 14px;
-  border-bottom: 3px solid var(--i2-amarelo-ouro);
-  display: flex; gap: 10px; align-items: flex-start;
-}
-.priority-banner::before { content: "⭐"; font-size: 18px; flex-shrink: 0; }
-
-/* CONTEÚDO */
-.content { padding: 24px; }
-
-/* SLOT */
-.slot { margin-bottom: 28px; }
-.slot-header {
-  display: flex; align-items: baseline; gap: 14px;
-  border-bottom: 3px solid var(--i2-amarelo);
-  padding-bottom: 8px; margin-bottom: 14px;
-}
-.slot-time {
-  font-family: var(--i2-font-display);
-  font-size: clamp(1.7rem, 5vw, 2.2rem);
-  letter-spacing: 0.02em;
-  color: var(--i2-verde); line-height: 1;
-}
-.slot-title { font-size: 16px; font-weight: 700; color: var(--i2-texto); flex: 1; }
-.slot-stars { color: var(--i2-amarelo-ouro); font-size: 14px; }
-.slot-body { font-size: 15px; }
-.slot-body p { margin-bottom: 10px; }
-.slot-body strong { color: var(--i2-verde); }
-
-/* PAINEL OBRIGATÓRIO (verde) */
-.panel-card {
-  background: linear-gradient(135deg, var(--i2-verde) 0%, var(--i2-verde-escuro) 100%);
-  color: var(--i2-branco);
-  border-radius: 16px; padding: 22px;
-  margin: 12px 0;
-  position: relative; overflow: hidden;
-}
-.panel-card::before {
-  content: ""; position: absolute; left: 0; top: 0; bottom: 0;
-  width: 6px; background: var(--i2-amarelo);
-}
-.panel-card-tag {
-  display: inline-block; background: var(--i2-amarelo); color: var(--i2-preto);
-  font-size: 11px; font-weight: 700; padding: 4px 10px;
-  border-radius: 999px; letter-spacing: 0.05em;
-  text-transform: uppercase; margin-bottom: 10px;
-}
-.panel-card-title {
-  font-family: var(--i2-font-display);
-  font-size: clamp(1.3rem, 4vw, 1.7rem);
-  letter-spacing: 0.02em; line-height: 1.15;
+.brand span { color: var(--i2-text-mute); }
+.tagline {
+  font-family: var(--font-mono); font-size: 11px;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--i2-verde-claro);
   margin-bottom: 8px;
 }
-.panel-card-meta { font-size: 13px; opacity: 0.9; margin-bottom: 8px; }
-.panel-card-meta strong { color: var(--i2-amarelo); }
-.panel-card-body { font-size: 14px; }
-.panel-card ul { margin-top: 8px; padding-left: 20px; }
-.panel-card ul li { margin-bottom: 4px; }
-
-/* PAINEL DESTAQUE OURO */
-.panel-card-gold {
-  background: var(--i2-amarelo);
-  color: var(--i2-preto);
+.tagline::before { content: "▸ "; }
+.hero-title {
+  font-size: 1.9rem; font-weight: 800;
+  line-height: 1.05; letter-spacing: -0.025em;
+  margin-bottom: 14px;
 }
-.panel-card-gold::before { background: var(--i2-verde); }
-.panel-card-gold .panel-card-tag {
-  background: var(--i2-verde); color: var(--i2-branco);
+.hero-title .accent { color: var(--i2-amarelo); }
+.hero-sub {
+  color: var(--i2-text-dim); font-size: 14px;
+  margin-bottom: 14px; line-height: 1.5;
 }
-.panel-card-gold .panel-card-meta { opacity: 1; color: var(--i2-texto); }
-.panel-card-gold .panel-card-meta strong { color: var(--i2-verde); }
+.hero-sub strong { color: var(--i2-text); font-weight: 600; }
+.hero-tags {
+  display: flex; flex-wrap: wrap; gap: 6px;
+  margin-bottom: 6px;
+}
+.hero-tag {
+  font-family: var(--font-mono); font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--i2-verde-claro);
+  background: var(--i2-bg-elev);
+  border: 1px solid var(--i2-border);
+  padding: 4px 8px; border-radius: 5px;
+}
 
-/* SPLIT BOX */
-.split-box {
+/* ============ TABS (sticky) ============ */
+.tabs-wrap {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(0, 0, 0, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  margin: 0 -14px; padding: 8px 14px;
+  border-bottom: 1px solid var(--i2-border);
+}
+.tabs-input { display: none; }
+.tabs {
   display: grid; grid-template-columns: 1fr 1fr;
-  gap: 12px; margin: 12px 0;
+  gap: 6px; background: var(--i2-bg-card);
+  border: 1px solid var(--i2-border);
+  border-radius: 10px; padding: 4px;
 }
-.split-card {
-  background: var(--i2-off-white);
-  border-radius: 12px; padding: 16px;
-  border-top: 4px solid var(--i2-verde);
+.tabs label {
+  text-align: center; padding: 11px 8px;
+  font-size: 13px; font-weight: 600;
+  color: var(--i2-text-dim);
+  border-radius: 7px; cursor: pointer;
+  transition: all 0.2s;
+  user-select: none;
+  font-family: var(--font-mono);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
-.split-card.alt { border-top-color: var(--i2-amarelo); }
-.split-card .who {
-  font-family: var(--i2-font-display);
-  font-size: 1.4rem; letter-spacing: 0.02em;
-  color: var(--i2-verde); margin-bottom: 6px;
+#tab-roteiro:checked ~ .tabs-wrap label[for="tab-roteiro"],
+#tab-todas:checked ~ .tabs-wrap label[for="tab-todas"] {
+  background: var(--i2-verde-deep);
+  color: var(--i2-verde-claro);
+  box-shadow: 0 0 16px rgba(52, 211, 153, 0.2);
 }
-.split-card.alt .who { color: var(--i2-amarelo-ouro); }
-.split-card .what { font-size: 14px; }
+.tab-content { padding-top: 16px; }
+.tab-content > div { display: none; }
+#tab-roteiro:checked ~ .tab-content .tab-roteiro { display: block; }
+#tab-todas:checked ~ .tab-content .tab-todas { display: block; }
 
-/* TABELA */
-table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 14px; }
-table th, table td {
-  text-align: left; padding: 10px 12px;
-  border-bottom: 1px solid #E5E5E5; vertical-align: top;
+/* ============ ALERTA ============ */
+.alert {
+  background: linear-gradient(90deg, rgba(243, 194, 0, 0.12), rgba(243, 194, 0, 0.04));
+  border: 1px solid rgba(243, 194, 0, 0.3);
+  border-left: 3px solid var(--i2-amarelo);
+  padding: 12px 14px; border-radius: 8px;
+  margin-bottom: 18px;
+  font-size: 13px; line-height: 1.5;
+  display: flex; gap: 10px;
 }
-table th {
-  background: var(--i2-off-white); font-weight: 700;
-  color: var(--i2-verde); font-size: 12px;
-  letter-spacing: 0.04em; text-transform: uppercase;
-}
-table td.estande {
-  font-family: var(--i2-font-display); font-size: 1.2rem;
-  color: var(--i2-amarelo-ouro); font-weight: 700;
-  width: 70px; letter-spacing: 0.04em;
-}
-table td.empresa { font-weight: 700; color: var(--i2-verde); }
+.alert-i { font-size: 18px; flex-shrink: 0; }
+.alert strong { color: var(--i2-amarelo); }
 
-/* CALLOUT */
+/* ============ SLOT ============ */
+.slot {
+  background: var(--i2-bg-card);
+  border: 1px solid var(--i2-border);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 12px;
+}
+.slot-head {
+  display: flex; align-items: baseline; gap: 10px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+.slot-time {
+  font-size: 1.7rem; font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--i2-verde-claro);
+  line-height: 1;
+}
+.slot-time-end { font-size: 0.55em; opacity: 0.5; font-weight: 500; }
+.slot-title {
+  font-size: 14px; font-weight: 600;
+  color: var(--i2-text); flex: 1;
+  min-width: 140px;
+}
+.slot-stars {
+  font-family: var(--font-mono); font-size: 11px;
+  color: var(--i2-amarelo); letter-spacing: 0.08em;
+}
+.slot-opt {
+  font-family: var(--font-mono); font-size: 9px;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--i2-text-mute);
+  border: 1px solid var(--i2-border);
+  padding: 2px 7px; border-radius: 4px;
+}
+.slot-body { font-size: 14px; color: var(--i2-text-dim); }
+.slot-body p { margin-bottom: 8px; }
+.slot-body p:last-child { margin-bottom: 0; }
+.slot-body strong { color: var(--i2-verde-claro); font-weight: 600; }
+.slot-body ul { padding-left: 18px; margin: 6px 0 8px; }
+.slot-body li { margin-bottom: 4px; }
+
+/* ============ WHY BLOCK ============ */
+.why {
+  background: var(--i2-bg-elev);
+  border-left: 2px solid var(--i2-verde-claro);
+  border-radius: 0 6px 6px 0;
+  padding: 10px 12px;
+  margin: 10px 0;
+  font-size: 13px;
+  color: var(--i2-text-dim);
+  line-height: 1.5;
+}
+.why-label {
+  font-family: var(--font-mono); font-size: 9px;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--i2-verde-claro);
+  margin-bottom: 4px; display: block;
+}
+.why-label::before { content: "▸ "; }
+
+/* ============ PAINEL OBRIGATÓRIO ============ */
+.panel {
+  position: relative;
+  background:
+    linear-gradient(135deg, rgba(10, 155, 132, 0.18), rgba(10, 74, 64, 0.4)),
+    var(--i2-bg-card);
+  border: 1px solid var(--i2-border-bright);
+  border-radius: 12px;
+  padding: 18px 16px;
+  margin: 10px 0 4px;
+  box-shadow: 0 0 24px rgba(52, 211, 153, 0.08);
+}
+.panel::before, .panel::after,
+.panel > .br::before, .panel > .br::after {
+  content: ""; position: absolute;
+  width: 14px; height: 14px;
+  border: 2px solid var(--i2-amarelo);
+  pointer-events: none;
+}
+.panel::before { top: 6px; left: 6px; border-right: none; border-bottom: none; }
+.panel::after { top: 6px; right: 6px; border-left: none; border-bottom: none; }
+.panel > .br::before { bottom: 6px; left: 6px; border-right: none; border-top: none; }
+.panel > .br::after { bottom: 6px; right: 6px; border-left: none; border-top: none; }
+.panel-tag {
+  display: inline-block;
+  background: var(--i2-amarelo); color: #000;
+  font-family: var(--font-mono);
+  font-size: 9px; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 3px 8px; border-radius: 4px;
+  margin-bottom: 10px;
+}
+.panel-title {
+  font-size: 1.25rem; font-weight: 800;
+  letter-spacing: -0.02em; line-height: 1.15;
+  margin-bottom: 8px;
+}
+.panel-meta {
+  font-family: var(--font-mono); font-size: 11px;
+  color: var(--i2-verde-claro);
+  margin-bottom: 12px;
+  letter-spacing: 0.03em;
+  line-height: 1.5;
+}
+.panel-meta strong { color: var(--i2-amarelo); font-weight: 600; }
+.panel-body { font-size: 13px; color: var(--i2-text-dim); }
+.panel-body strong { color: var(--i2-text); }
+
+/* ============ CARD-LISTA ESTANDES (mobile-friendly, sem tabela) ============ */
+.estande-list { margin: 8px 0; }
+.estande-item {
+  display: flex; gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--i2-border);
+  font-size: 13px;
+}
+.estande-item:last-child { border-bottom: none; }
+.estande-tag {
+  font-family: var(--font-mono); font-weight: 700;
+  font-size: 13px; color: var(--i2-amarelo);
+  letter-spacing: 0.05em;
+  background: rgba(243, 194, 0, 0.1);
+  border: 1px solid rgba(243, 194, 0, 0.25);
+  border-radius: 5px;
+  padding: 4px 8px;
+  align-self: flex-start;
+  flex-shrink: 0;
+  min-width: 48px; text-align: center;
+}
+.estande-info { flex: 1; min-width: 0; }
+.estande-name {
+  color: var(--i2-text); font-weight: 600;
+  font-size: 14px; margin-bottom: 2px;
+}
+.estande-desc { color: var(--i2-text-dim); font-size: 13px; line-height: 1.45; }
+
+/* ============ CALLOUT ============ */
 .callout {
-  background: var(--i2-off-white);
-  border-left: 4px solid var(--i2-amarelo);
-  padding: 14px 16px; margin: 12px 0;
-  border-radius: 6px; font-size: 14px;
+  background: var(--i2-bg-elev);
+  border-left: 3px solid var(--i2-verde-claro);
+  padding: 10px 12px; margin: 10px 0;
+  border-radius: 0 6px 6px 0; font-size: 13px;
+  color: var(--i2-text-dim);
 }
-.callout-warn { background: #FFF4F4; border-left-color: #D14B4B; }
-.callout-warn::before { content: "⚠️ "; }
-.callout-good { background: #F0FBF7; border-left-color: var(--i2-verde-claro); }
+.callout strong { color: var(--i2-verde-claro); }
+.callout-warn {
+  background: rgba(255, 107, 107, 0.06);
+  border-left-color: var(--i2-danger);
+}
+.callout-warn strong { color: var(--i2-danger); }
 
-/* CHECKLIST */
+/* ============ SPLIT (mobile: empilha) ============ */
+.split {
+  display: grid; grid-template-columns: 1fr;
+  gap: 8px; margin: 10px 0;
+}
+.split-c {
+  background: var(--i2-bg-elev);
+  border: 1px solid var(--i2-border);
+  border-radius: 8px;
+  padding: 12px;
+  border-left: 3px solid var(--i2-verde-claro);
+}
+.split-c.alt { border-left-color: var(--i2-amarelo); }
+.split-c-who {
+  font-family: var(--font-mono); font-size: 10px;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--i2-verde-claro); margin-bottom: 4px;
+}
+.split-c.alt .split-c-who { color: var(--i2-amarelo); }
+.split-c-what { font-size: 13px; color: var(--i2-text-dim); }
+.split-c-what strong { color: var(--i2-text); }
+
+/* ============ ALERTAS DE CAMPO ============ */
+.alerts-box {
+  background: var(--i2-bg-card);
+  border: 1px solid var(--i2-danger);
+  border-radius: 12px;
+  padding: 16px;
+  margin: 18px 0;
+}
+.alerts-title {
+  font-family: var(--font-mono); font-size: 11px;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--i2-danger); margin-bottom: 12px;
+}
+.alert-item {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--i2-border);
+  font-size: 13px; color: var(--i2-text-dim);
+  line-height: 1.5;
+}
+.alert-item:last-child { border-bottom: none; }
+.alert-item strong {
+  display: block; color: var(--i2-text);
+  margin-bottom: 3px; font-weight: 600;
+}
+
+/* ============ CHECKLIST ============ */
 .checklist {
-  background: var(--i2-off-white);
-  border-radius: 12px; padding: 20px; margin-top: 28px;
+  background: var(--i2-bg-card);
+  border: 1px solid var(--i2-border);
+  border-radius: 12px;
+  padding: 18px;
+  margin: 18px 0;
 }
-.checklist h3 {
-  font-family: var(--i2-font-display);
-  font-size: 1.6rem; letter-spacing: 0.02em;
-  color: var(--i2-verde); margin-bottom: 12px;
+.checklist-title {
+  font-family: var(--font-mono); font-size: 11px;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--i2-verde-claro); margin-bottom: 12px;
 }
-.checklist h4 {
-  color: var(--i2-amarelo-ouro); font-size: 13px;
-  letter-spacing: 0.06em; text-transform: uppercase;
-  margin-top: 14px; margin-bottom: 4px;
-}
-.checklist h4:first-of-type { margin-top: 0; }
+.checklist-title::before { content: "▸ "; }
 .checklist label {
-  display: flex; gap: 12px; padding: 8px 0;
+  display: flex; gap: 12px; align-items: flex-start;
+  padding: 12px 0; min-height: 44px;
+  border-bottom: 1px solid var(--i2-border);
   cursor: pointer; user-select: none;
-  border-bottom: 1px dashed #DDD; font-size: 14px;
+  font-size: 14px;
 }
 .checklist label:last-child { border-bottom: none; }
 .checklist input[type="checkbox"] {
+  appearance: none; -webkit-appearance: none;
   width: 22px; height: 22px;
-  accent-color: var(--i2-verde);
-  flex-shrink: 0; margin-top: 2px;
+  border: 1.5px solid var(--i2-verde-claro);
+  border-radius: 5px; cursor: pointer;
+  flex-shrink: 0; margin-top: 1px;
+  transition: all 0.2s;
+  background: transparent; position: relative;
 }
-.checklist input:checked + span { text-decoration: line-through; opacity: 0.5; }
-
-/* FOOTER */
-.foot {
-  background: var(--i2-preto); color: var(--i2-branco);
-  padding: 24px; text-align: center; font-size: 13px;
+.checklist input[type="checkbox"]:checked {
+  background: var(--i2-verde-claro);
+  border-color: var(--i2-verde-claro);
 }
-.foot strong { color: var(--i2-amarelo); }
-.foot a { color: var(--i2-amarelo); text-decoration: none; }
+.checklist input[type="checkbox"]:checked::after {
+  content: "✓"; position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  color: #000; font-weight: 800; font-size: 14px;
+}
+.checklist input:checked + span {
+  text-decoration: line-through; color: var(--i2-text-mute);
+}
 
-/* NAV */
+/* ============ NAV LINK ============ */
 .nav-link {
-  display: inline-block; background: var(--i2-amarelo);
-  color: var(--i2-preto); padding: 12px 22px;
-  border-radius: 12px; font-weight: 700;
-  text-decoration: none; margin: 16px 8px 8px 0;
-}
-.nav-link.secondary { background: var(--i2-off-white); color: var(--i2-verde); border: 2px solid var(--i2-verde); }
-.nav-link:hover { background: var(--i2-amarelo-ouro); }
-
-/* RESPONSIVO */
-@media (max-width: 600px) {
-  .content { padding: 18px; }
-  .hero { padding: 22px 18px 26px; }
-  table th, table td { padding: 8px 6px; font-size: 13px; }
-  table td.estande { width: 56px; font-size: 1rem; }
-  .slot-header { flex-wrap: wrap; gap: 8px; }
-  .split-box { grid-template-columns: 1fr; }
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  background: var(--i2-verde-deep); color: var(--i2-text);
+  padding: 14px 18px; border-radius: 10px;
+  font-weight: 600; text-decoration: none;
+  border: 1px solid var(--i2-verde);
+  font-size: 14px; min-height: 48px;
+  margin: 12px 0;
 }
 
-/* PRINT */
-@media print {
-  body { background: white; }
-  .wrap { box-shadow: none; }
-  .hero, .panel-card, .priority-banner { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-  .nav-link, .foot a { display: none; }
+/* ============ STICKY BAR ============ */
+.sticky-now {
+  position: fixed; bottom: 0; left: 0; right: 0;
+  background: rgba(0, 0, 0, 0.94);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-top: 1px solid var(--i2-border-bright);
+  padding: 10px 14px;
+  display: flex; align-items: center; gap: 10px;
+  z-index: 100;
+  font-size: 12px;
+  padding-bottom: max(10px, env(safe-area-inset-bottom));
 }
+.pulse {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--i2-verde-claro);
+  flex-shrink: 0;
+  box-shadow: 0 0 8px var(--i2-verde-claro);
+  animation: pulse 2s infinite;
+}
+@keyframes pulse { 50% { opacity: 0.4; } }
+.sticky-label {
+  font-family: var(--font-mono); font-size: 9px;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--i2-verde-claro); flex-shrink: 0;
+}
+.sticky-text {
+  flex: 1; color: var(--i2-text); font-weight: 500;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  font-size: 12px;
+}
+
+/* ============ FOOTER ============ */
+.foot {
+  padding: 24px 0 12px;
+  border-top: 1px solid var(--i2-border);
+  margin-top: 24px;
+  text-align: center;
+}
+.foot-line {
+  font-family: var(--font-mono); font-size: 9px;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--i2-text-mute);
+  line-height: 1.6;
+}
+.foot-line strong { color: var(--i2-verde-claro); font-weight: 500; }
+
+/* ============ TODAS AS PALESTRAS ============ */
+.day-section { margin-bottom: 22px; }
+.day-section-title {
+  font-family: var(--font-mono); font-size: 11px;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--i2-verde-claro);
+  padding-bottom: 6px; margin-bottom: 10px;
+  border-bottom: 1px solid var(--i2-border);
+}
+.day-section-title::before { content: "▸ "; }
+.session {
+  background: var(--i2-bg-card);
+  border: 1px solid var(--i2-border);
+  border-radius: 10px;
+  padding: 12px 14px; margin-bottom: 8px;
+  display: flex; gap: 12px;
+  align-items: flex-start;
+}
+.session.rec-3 {
+  border-color: var(--i2-amarelo);
+  background: linear-gradient(135deg, rgba(243, 194, 0, 0.06), transparent), var(--i2-bg-card);
+}
+.session.rec-2 {
+  border-color: var(--i2-border-bright);
+}
+.session-time {
+  font-family: var(--font-mono); font-size: 11px;
+  font-weight: 600;
+  color: var(--i2-verde-claro);
+  flex-shrink: 0;
+  min-width: 56px;
+  letter-spacing: 0.02em;
+  padding-top: 1px;
+}
+.session.rec-3 .session-time { color: var(--i2-amarelo); }
+.session-info { flex: 1; min-width: 0; }
+.session-stars {
+  display: inline-block;
+  font-family: var(--font-mono); font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--i2-amarelo);
+  margin-right: 6px;
+}
+.session.rec-2 .session-stars { color: var(--i2-verde-claro); }
+.session.rec-1 .session-stars { color: var(--i2-text-mute); }
+.session-skip { color: var(--i2-text-mute); }
+.session-title {
+  font-size: 13px; font-weight: 600;
+  color: var(--i2-text); line-height: 1.35;
+  margin-bottom: 3px;
+}
+.session.rec-0 .session-title { color: var(--i2-text-dim); font-weight: 500; }
+.session-meta {
+  font-family: var(--font-mono); font-size: 10px;
+  color: var(--i2-text-mute);
+  letter-spacing: 0.02em;
+  line-height: 1.45;
+}
+.session-why {
+  margin-top: 6px;
+  padding: 6px 8px;
+  background: var(--i2-bg-elev);
+  border-left: 2px solid var(--i2-verde-claro);
+  border-radius: 0 4px 4px 0;
+  font-size: 12px;
+  color: var(--i2-text-dim);
+  line-height: 1.45;
+}
+.session.rec-3 .session-why {
+  border-left-color: var(--i2-amarelo);
+  background: rgba(243, 194, 0, 0.04);
+}
+.legend {
+  display: flex; flex-wrap: wrap; gap: 12px;
+  font-size: 11px;
+  color: var(--i2-text-mute);
+  margin-bottom: 16px;
+  padding: 10px 12px;
+  background: var(--i2-bg-elev);
+  border-radius: 8px;
+  font-family: var(--font-mono);
+  letter-spacing: 0.04em;
+}
+.legend-item { display: flex; align-items: center; gap: 5px; }
+.legend-stars { color: var(--i2-amarelo); }
+.legend-stars.s2 { color: var(--i2-verde-claro); }
+.legend-stars.s1 { color: var(--i2-text-mute); }
 </style>
 </head>
 <body>
+
 <div class="wrap">
 
-<!-- HEADER -->
+<!-- TABS RADIO INPUTS (dentro de .wrap pra ~ funcionar) -->
+<input type="radio" name="tab" id="tab-roteiro" class="tabs-input" checked>
+<input type="radio" name="tab" id="tab-todas" class="tabs-input">
+
+<!-- HERO -->
 <header class="hero">
   <div class="hero-top">
     <svg class="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 890 975" aria-label="i2 Fibra"><path fill="#F3C200" fill-rule="evenodd" d="M 171.00,971.50 L 148.00,971.50 L 147.00,970.50 L 139.00,970.50 L 119.00,966.50 L 104.00,961.50 L 87.00,953.50 L 62.00,936.50 L 42.50,917.00 L 26.50,894.00 L 14.50,867.00 L 10.50,852.00 L 8.50,834.00 L 7.50,833.00 L 7.50,146.00 L 8.50,145.00 L 9.50,131.00 L 17.50,103.00 L 25.50,86.00 L 33.50,73.00 L 43.50,60.00 L 61.00,42.50 L 82.00,27.50 L 110.00,14.50 L 140.00,7.50 L 158.00,7.50 L 159.00,6.50 L 161.00,7.50 L 179.00,7.50 L 199.00,11.50 L 217.00,17.50 L 236.00,26.50 L 253.00,37.50 L 357.00,96.50 L 364.00,101.50 L 624.00,250.50 L 787.00,345.50 L 814.00,359.50 L 833.00,373.50 L 848.50,389.00 L 864.50,411.00 L 874.50,431.00 L 879.50,445.00 L 885.50,477.00 L 885.50,502.00 L 884.50,503.00 L 883.50,517.00 L 881.50,522.00 L 880.50,530.00 L 872.50,552.00 L 861.50,572.00 L 849.50,588.00 L 832.00,605.50 L 823.00,612.50 L 792.00,631.50 L 759.00,649.50 L 752.00,654.50 L 686.00,691.50 L 679.00,696.50 L 613.00,733.50 L 606.00,738.50 L 580.00,752.50 L 573.00,757.50 L 507.00,794.50 L 500.00,799.50 L 434.00,836.50 L 427.00,841.50 L 361.00,878.50 L 234.00,952.50 L 215.00,961.50 L 200.00,966.50 L 180.00,970.50 L 172.00,970.50 L 171.00,971.50 Z"/><path fill="#FFFFFF" fill-rule="evenodd" d="M 170.00,355.50 L 157.00,355.50 L 142.00,349.50 L 131.50,338.00 L 127.50,327.00 L 127.50,314.00 L 130.50,304.00 L 133.50,299.00 L 145.00,288.50 L 156.00,284.50 L 171.00,284.50 L 182.00,288.50 L 189.00,293.50 L 193.50,299.00 L 197.50,306.00 L 199.50,313.00 L 199.50,328.00 L 194.50,340.00 L 189.00,346.50 L 182.00,351.50 L 170.00,355.50 Z M 443.00,690.50 L 438.00,690.50 L 434.00,688.50 L 429.50,684.00 L 428.50,682.00 L 429.00,667.50 L 224.50,667.00 L 224.50,637.00 L 382.50,475.00 L 397.50,456.00 L 409.50,437.00 L 417.50,419.00 L 421.50,404.00 L 421.50,398.00 L 422.50,397.00 L 421.50,376.00 L 418.50,366.00 L 411.50,353.00 L 402.00,342.50 L 394.00,336.50 L 382.00,330.50 L 368.00,326.50 L 362.00,326.50 L 361.00,325.50 L 334.00,326.50 L 319.00,330.50 L 305.00,337.50 L 299.00,341.50 L 281.50,360.00 L 272.50,377.00 L 269.00,388.50 L 226.00,374.50 L 225.50,371.00 L 231.50,355.00 L 238.50,342.00 L 246.50,331.00 L 263.00,314.50 L 271.00,308.50 L 298.00,294.50 L 318.00,288.50 L 328.00,287.50 L 329.00,286.50 L 338.00,286.50 L 339.00,285.50 L 373.00,286.50 L 389.00,289.50 L 405.00,294.50 L 423.00,303.50 L 439.00,315.50 L 449.50,327.00 L 455.50,336.00 L 463.50,353.00 L 468.50,376.00 L 467.50,408.00 L 460.50,433.00 L 454.50,447.00 L 446.50,461.00 L 432.50,481.00 L 415.50,501.00 L 292.50,628.00 L 434.00,628.50 L 435.50,625.00 L 435.50,619.00 L 438.50,613.00 L 448.00,606.50 L 455.00,606.50 L 503.00,636.50 L 508.50,643.00 L 508.50,650.00 L 504.50,657.00 L 501.00,659.50 L 443.00,690.50 Z M 186.00,694.50 L 142.00,694.50 L 140.50,693.00 L 141.00,408.50 L 186.50,409.00 L 186.00,694.50 Z M 540.00,540.50 L 527.50,540.00 L 527.00,474.50 L 505.50,475.00 L 505.50,540.00 L 493.50,540.00 L 493.50,476.00 L 492.00,474.50 L 481.50,474.00 L 481.50,463.00 L 493.00,462.50 L 493.50,454.00 L 497.50,444.00 L 504.00,437.50 L 516.00,433.50 L 540.50,434.00 L 540.00,445.50 L 518.00,445.50 L 514.00,446.50 L 507.50,452.00 L 505.50,459.00 L 506.00,462.50 L 539.00,462.50 L 540.50,464.00 L 540.00,540.50 Z M 601.00,542.50 L 593.00,542.50 L 581.00,539.50 L 574.00,535.50 L 569.00,530.50 L 568.00,540.50 L 555.50,540.00 L 556.00,435.50 L 568.50,436.00 L 569.00,471.50 L 579.00,463.50 L 587.00,460.50 L 593.00,460.50 L 594.00,459.50 L 606.00,460.50 L 615.00,463.50 L 623.00,468.50 L 630.50,476.00 L 636.50,487.00 L 638.50,495.00 L 638.50,507.00 L 636.50,515.00 L 632.50,523.00 L 619.00,536.50 L 613.00,539.50 L 601.00,542.50 Z M 661.00,540.50 L 649.50,540.00 L 649.50,462.00 L 661.00,461.50 L 661.50,467.00 L 663.00,467.50 L 671.00,461.50 L 683.00,459.50 L 683.50,473.00 L 675.00,474.50 L 668.00,478.50 L 662.50,488.00 L 661.00,540.50 Z M 734.00,542.50 L 725.00,542.50 L 713.00,539.50 L 704.00,534.50 L 695.50,526.00 L 690.50,517.00 L 687.50,506.00 L 687.50,496.00 L 690.50,485.00 L 696.50,475.00 L 703.00,468.50 L 716.00,461.50 L 726.00,460.50 L 727.00,459.50 L 739.00,460.50 L 751.00,465.50 L 757.00,471.50 L 758.50,471.00 L 759.00,461.50 L 770.00,461.50 L 770.50,540.00 L 759.00,540.50 L 758.00,530.50 L 751.00,536.50 L 743.00,540.50 L 734.00,542.50 Z M 602.50,530.00 L 606.00,529.50 L 614.00,525.50 L 622.50,516.00 L 625.50,508.00 L 625.50,495.00 L 619.50,482.00 L 612.00,475.50 L 605.00,472.50 L 592.00,471.50 L 580.00,476.50 L 572.50,484.00 L 567.50,497.00 L 567.50,506.00 L 570.50,515.00 L 575.50,522.00 L 580.00,525.50 L 591.00,530.50 L 602.50,530.00 Z M 735.50,530.00 L 745.00,526.50 L 754.50,517.00 L 758.50,507.00 L 757.50,492.00 L 753.50,484.00 L 746.00,476.50 L 741.00,473.50 L 734.00,471.50 L 721.00,472.50 L 709.00,479.50 L 704.50,485.00 L 700.50,495.00 L 701.50,511.00 L 705.50,519.00 L 714.00,526.50 L 724.00,530.50 L 735.50,530.00 Z"/></svg>
     <div>
-      <div class="hero-meta">AGC 2026 — Distrito Anhembi</div>
-      <h1 class="hero-title">Roteiro <span>Dia 7</span></h1>
+      <div class="brand">i2 Platform <span>/ AGC 2026</span></div>
     </div>
   </div>
-  <p class="hero-sub">Quarta, 7 de maio · Cleiberson + Patrick · dia completo</p>
+  <div class="tagline">QUI · 7 MAI 2026 · DIA 2</div>
+  <h1 class="hero-title">Conectar.<br>Resolver.<br><span class="accent">Crescer.</span></h1>
+  <p class="hero-sub"><strong>Cleiberson + Patrick</strong> · dia completo · 9h–19h</p>
   <div class="hero-tags">
-    <span class="tag">⚙️ Automação</span>
-    <span class="tag">🛡️ DDoS</span>
-    <span class="tag">📊 Observabilidade</span>
-    <span class="tag">🔬 IA preditiva</span>
+    <span class="hero-tag">⚙ Automação</span>
+    <span class="hero-tag">🛡 DDoS</span>
+    <span class="hero-tag">📊 Observabilidade</span>
+    <span class="hero-tag">🔬 IA preditiva</span>
   </div>
 </header>
 
-<div class="priority-banner">
-  Dia principal. OLT é Huawei → ZTE Summit (14h) <strong style="color: var(--i2-verde);">não é obrigação</strong>. Tarde livre para estandes.
+<!-- TABS -->
+<div class="tabs-wrap">
+  <div class="tabs">
+    <label for="tab-roteiro">Roteiro</label>
+    <label for="tab-todas">Todas as palestras</label>
+  </div>
 </div>
 
-<!-- CONTEÚDO -->
-<div class="content">
+<!-- TAB CONTENT -->
+<div class="tab-content">
 
-  <!-- 9:00 -->
-  <div class="slot">
-    <div class="slot-header">
-      <div class="slot-time">09:00</div>
-      <div class="slot-title">Chegada antecipada — estandes sem fila</div>
-    </div>
-    <div class="slot-body">
-      <p>Manhã cedo = menos fila. Completar pendências do dia 6:</p>
-      <table>
-        <thead><tr><th>★</th><th>Estande</th><th>Empresa</th><th>Foco</th></tr></thead>
-        <tbody>
-          <tr><td><span class="slot-stars">★★★</span></td><td class="estande">B13</td><td class="empresa">AVSystem</td><td>ACS TR-369 + auto-discovery (Huawei)</td></tr>
-          <tr><td><span class="slot-stars">★★★</span></td><td class="estande">B14</td><td class="empresa">Inatel</td><td>FibrIA, inventário, monitoramento preditivo</td></tr>
-          <tr><td><span class="slot-stars">★★★</span></td><td class="estande">A04</td><td class="empresa">Auben Networks</td><td>Observabilidade + mapa topológico (preparar p/ painel das 15h)</td></tr>
-        </tbody>
-      </table>
-      <div class="callout">Se já visitaram dia 6: usar este horário para MVNO ou backbone.</div>
-    </div>
+<!-- ============================================ -->
+<!-- TAB 1: ROTEIRO RECOMENDADO -->
+<!-- ============================================ -->
+<div class="tab-roteiro">
+
+<!-- ALERTA -->
+<div class="alert">
+  <div class="alert-i">⚠</div>
+  <div>Dia mais técnico e mais denso da viagem. <strong>11h DDoS</strong> e <strong>15h Observabilidade</strong> são os dois OBRIGATÓRIOS — não dá pra perder nenhum dos dois. Tudo o resto se ajusta em torno deles.</div>
+</div>
+
+<!-- 9:00 ESTANDES SEM FILA -->
+<div class="slot">
+  <div class="slot-head">
+    <div class="slot-time">9:00<span class="slot-time-end">→10:00</span></div>
+    <div class="slot-title">Estandes sem fila — janela de ouro</div>
   </div>
-
-  <!-- 10:00 -->
-  <div class="slot">
-    <div class="slot-header">
-      <div class="slot-time">10:00</div>
-      <div class="slot-title">Painel 1 <span class="slot-stars">★★</span></div>
-    </div>
-    <div class="panel-card">
-      <span class="panel-card-tag">IA estratégica</span>
-      <h3 class="panel-card-title">IA como vetor estratégico para ISPs</h3>
-      <div class="panel-card-meta"><strong>Ranyeri do Lago Rocha (Inatel)</strong> · Área Azul · 10:00–10:50</div>
-      <div class="panel-card-body">
-        <p>Mesma empresa que está no estande B14 (FibrIA). Anotar: casos de uso reais já implementados em ISPs brasileiros.</p>
+  <div class="slot-body">
+    <p>Chegar cedo, antes da multidão. Vendedor disponível, fila zero, conversa técnica de verdade.</p>
+    <div class="estande-list">
+      <div class="estande-item">
+        <div class="estande-tag">B13</div>
+        <div class="estande-info">
+          <div class="estande-name">AVSystem</div>
+          <div class="estande-desc">ACS TR-369 — auto-discovery em OLT Huawei. Pegar Christian Medina ou Ailton Morais.</div>
+        </div>
+      </div>
+      <div class="estande-item">
+        <div class="estande-tag">B14</div>
+        <div class="estande-info">
+          <div class="estande-name">Inatel · FibrIA</div>
+          <div class="estande-desc">IA aplicada à rede. Aquecer o tema antes do painel das 10h com Ranyeri.</div>
+        </div>
+      </div>
+      <div class="estande-item">
+        <div class="estande-tag">A04</div>
+        <div class="estande-info">
+          <div class="estande-name">Auben Networks</div>
+          <div class="estande-desc">Observabilidade. Conhecer o produto antes do painel do Guillermo às 15h.</div>
+        </div>
       </div>
     </div>
-  </div>
-
-  <!-- 11:00 OBRIGATÓRIO -->
-  <div class="slot">
-    <div class="slot-header">
-      <div class="slot-time">11:00</div>
-      <div class="slot-title">Painel 2 — JUNTOS, OBRIGATÓRIO <span class="slot-stars">★★★</span></div>
-    </div>
-    <div class="panel-card panel-card-gold">
-      <span class="panel-card-tag">Dor #2 — DDoS</span>
-      <h3 class="panel-card-title">Mitigação de DDoS</h3>
-      <div class="panel-card-meta">Wanguard · NetFlow · IPFIX · BGP Flowspec<br><strong>Raphael Rodrigues (Flowspec Solutions)</strong> · Plenária Conectividade · 11:00–11:50</div>
-      <div class="panel-card-body">
-        <p style="margin-top: 8px;"><strong>O que observar:</strong></p>
-        <ul>
-          <li>Quais ISPs de porte 5–15k clientes já implementaram</li>
-          <li>Como é a migração sem interrupção de serviço</li>
-          <li>Modelo de licença vs. appliance vs. cloud</li>
-        </ul>
-        <p style="margin-top: 10px;"><strong>⚠️ No painel ou depois: NÃO mencionar Huge Networks.</strong></p>
-      </div>
+    <div class="why">
+      <span class="why-label">Por que ir agora</span>
+      Esta é a melhor janela do dia. Vendedor disponível, fila baixa, e os 3 estandes conectam direto com o sonho do Gabriel: ligar o sistema na OLT e descobrir tudo da rede automaticamente. Pré-aquecer aqui faz os painéis das 10h, 11h, 12h e 15h renderem muito mais.
     </div>
   </div>
+</div>
 
-  <!-- 12:00 -->
-  <div class="slot">
-    <div class="slot-header">
-      <div class="slot-time">12:00</div>
-      <div class="slot-title">Painel 3 <span class="slot-stars">★★</span></div>
-    </div>
-    <div class="panel-card">
-      <span class="panel-card-tag">Padrões abertos · TR-369</span>
-      <h3 class="panel-card-title">Vendor lock-in e padrões abertos</h3>
-      <div class="panel-card-meta"><strong>Anlix + Broadband Forum + G3 Telecom</strong> · Plenária Conectividade · 12:00–12:50</div>
-      <div class="panel-card-body">
-        <p><strong>Perguntas após o painel</strong> (procurar Anlix ou BBF):</p>
-        <ul>
-          <li>"TR-369 tem auto-discovery de ONUs em OLT Huawei?"</li>
-          <li>"Custo de migração TR-069 → TR-369?"</li>
-        </ul>
-        <p style="margin-top: 8px;"><strong>Patrick (paralelo):</strong> visitar A04 Auben se ainda não foi, ou backbone.</p>
-      </div>
+<!-- 10:00 IA INATEL -->
+<div class="slot">
+  <div class="slot-head">
+    <div class="slot-time">10:00</div>
+    <div class="slot-title">IA como vetor estratégico para ISPs</div>
+    <div class="slot-stars">★★</div>
+  </div>
+  <div class="slot-body">
+    <p><strong>Ranyeri do Lago Rocha</strong> (Inatel) · Área Azul · 10:00–10:50</p>
+    <div class="why">
+      <span class="why-label">Por que ir</span>
+      Mesma empresa do estande B14 (FibrIA). Casos reais de IA aplicada em ISPs brasileiros — não é teoria. Inatel ainda traz o painel de monitoramento preditivo no dia 8, então hoje serve de aquecimento.
     </div>
   </div>
+</div>
 
-  <!-- 12:50 ALMOÇO -->
-  <div class="slot">
-    <div class="slot-header">
-      <div class="slot-time">12:50<span style="font-size: 0.6em; opacity: 0.6;"> – 14:00</span></div>
-      <div class="slot-title">Almoço + estandes (vendedores com tempo livre)</div>
-    </div>
-    <div class="slot-body">
-      <table>
-        <tbody>
-          <tr><td class="estande">B13</td><td class="empresa">AVSystem</td><td>Fechar conversa sobre auto-discovery</td></tr>
-          <tr><td class="estande">B14</td><td class="empresa">Inatel</td><td>FibrIA demo, inventário</td></tr>
-          <tr><td class="estande">B08</td><td class="empresa">Padtec</td><td>Backbone óptico (rápido)</td></tr>
-        </tbody>
-      </table>
-    </div>
+<!-- 11:00 DDoS OBRIGATÓRIO -->
+<div class="slot">
+  <div class="slot-head">
+    <div class="slot-time">11:00</div>
+    <div class="slot-title">Painel obrigatório · juntos</div>
+    <div class="slot-stars">★★★</div>
   </div>
-
-  <!-- 14:00 SPLIT -->
-  <div class="slot">
-    <div class="slot-header">
-      <div class="slot-time">14:00</div>
-      <div class="slot-title">SPLIT — Cleiberson e Patrick <span class="slot-stars">★★</span></div>
-    </div>
-    <div class="split-box">
-      <div class="split-card">
-        <div class="who">Cleiberson</div>
-        <div class="what"><strong>Painel:</strong> Cyber resilience<br>Sérgio Simas (Forte Telecom)<br>Plenária Inovação · 50 min</div>
-      </div>
-      <div class="split-card alt">
-        <div class="who">Patrick</div>
-        <div class="what"><strong>Estandes:</strong><br>C04 Alares (DDoS, sem citar Huge)<br>+ backbone: E08, G18, I06, H20 (5 min cada)</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 15:00 OBRIGATÓRIO -->
-  <div class="slot">
-    <div class="slot-header">
-      <div class="slot-time">15:00</div>
-      <div class="slot-title">Painel 5 — JUNTOS, OBRIGATÓRIO <span class="slot-stars">★★★</span></div>
-    </div>
-    <div class="panel-card panel-card-gold">
-      <span class="panel-card-tag">Dor #3 — observabilidade</span>
-      <h3 class="panel-card-title">Observabilidade de redes</h3>
-      <div class="panel-card-meta"><strong>Guillermo Trigo (Auben Networks)</strong> · Plenária Inovação · 15:00–16:00</div>
-      <div class="panel-card-body">
-        <p><strong>O que observar:</strong></p>
-        <ul>
-          <li>Onboarding migrando de SNMP básico</li>
-          <li>Integração nativa com OLT Huawei</li>
-          <li>Quanto tempo até visibilidade completa</li>
-          <li>Modelo SaaS vs. on-prem</li>
-        </ul>
-      </div>
-    </div>
-    <div class="callout callout-good">
-      <strong>Após o painel:</strong> abordar Guillermo Trigo pessoalmente. Como palestrante, ele é mais aberto a conversa técnica do que o booth genérico.
-    </div>
-  </div>
-
-  <!-- 15:15 OPCIONAL -->
-  <div class="slot">
-    <div class="slot-header">
-      <div class="slot-time">15:15</div>
-      <div class="slot-title">CEO Talk <span class="slot-stars">opcional · Cleiberson</span></div>
-    </div>
-    <div class="slot-body">
-      <p><strong>Palco Principal 360°</strong> — 5 CEOs de provedores: Gustavo Stock, Breno Vale, Denis Ferreira, Fabiano Ferreira, Patrick Canton.</p>
-      <div class="callout">Algar está aqui — oportunidade de networking com CEO. <strong>Não revelar dados estratégicos da i2</strong> (M&amp;A ativo).</div>
-    </div>
-  </div>
-
-  <!-- 16:00 ESTANDES RESTANTES -->
-  <div class="slot">
-    <div class="slot-header">
-      <div class="slot-time">16:00<span style="font-size: 0.6em; opacity: 0.6;"> – 18:00</span></div>
-      <div class="slot-title">Bloco de estandes restantes</div>
-    </div>
-    <div class="slot-body">
-      <p><strong>Cluster MVNO — percurso em sequência (20-25 min):</strong></p>
-      <table>
-        <tbody>
-          <tr><td class="estande">F05</td><td class="empresa">Surf</td><td rowspan="4">"Como funciona o modelo para provedor de 9k clientes em Goiás? Mínimo de chips? Margem estimada?"</td></tr>
-          <tr><td class="estande">F15</td><td class="empresa">TIP</td></tr>
-          <tr><td class="estande">G02</td><td class="empresa">Bora</td></tr>
-          <tr><td class="estande">I11</td><td class="empresa">Braz Móvel</td></tr>
-        </tbody>
-      </table>
-      <p style="margin-top: 14px;"><strong>Outras paradas:</strong></p>
-      <table>
-        <tbody>
-          <tr><td class="empresa">Wi-Fi premium</td><td>Distribuidores com Wi-Fi 6E/7 — Wi-Fi gerenciado para PME corporativo</td></tr>
-          <tr><td class="empresa">Time is Money</td><td>Cobrança — visita rápida obrigatória (10 min)</td></tr>
-          <tr><td class="estande">A22</td><td class="empresa">Elea Data Centers</td><td>Colocation neutro · pós-M&amp;A I Squared (US$ 10bi)</td></tr>
-          <tr><td class="estande">B36</td><td class="empresa">Venko</td><td>IA aplicada (10 min, se der tempo)</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <!-- 17:00 OPCIONAL -->
-  <div class="slot">
-    <div class="slot-header">
-      <div class="slot-time">17:00</div>
-      <div class="slot-title">Painel <span class="slot-stars">opcional</span></div>
-    </div>
-    <div class="slot-body">
-      <p><strong>"IA e maturidade regulatória"</strong> — Paulo Tobias, Alda Rodrigues (Anatel) · Plenária Inovação. Se ainda tiverem energia.</p>
-    </div>
-  </div>
-
-  <!-- 17:50 -->
-  <div class="slot">
-    <div class="slot-header">
-      <div class="slot-time">17:50</div>
-      <div class="slot-title">Síntese do dia (obrigatório)</div>
-    </div>
-    <div class="slot-body">
-      <ul style="padding-left: 20px;">
-        <li><strong>Áudio 1 (2-3 min):</strong> descobertas do dia, empresas interessantes, decisões</li>
-        <li><strong>Áudio 2:</strong> insights técnicos específicos (automação, DDoS, observabilidade)</li>
-        <li><strong>Áudio 3:</strong> empresas para follow-up — nome, estande, pendências</li>
-        <li>Enviar tudo para Gabriel no WhatsApp</li>
+  <div class="panel">
+    <span class="br"></span>
+    <div class="panel-tag">Prioridade #1 · DDoS</div>
+    <h3 class="panel-title">Mitigação de DDoS</h3>
+    <div class="panel-meta"><strong>Raphael Rodrigues</strong> · Flowspec Solutions<br>Plenária Técnica – Conectividade · 11:00–11:50<br><strong>Wanguard / NetFlow / IPFIX / BGP Flowspec</strong></div>
+    <div class="panel-body">
+      <p><strong>Perguntas-chave se houver Q&amp;A:</strong></p>
+      <ul>
+        <li>"Qual o stack mínimo pra detectar e mitigar DDoS volumétrico em ISP médio sem depender de upstream?"</li>
+        <li>"Como BGP Flowspec se comporta quando o trânsito é via Algar/V.Tal/Cirion — quais aceitam community?"</li>
+        <li>"Wanguard vs. soluções comerciais: onde quebra na prática?"</li>
       </ul>
     </div>
   </div>
-
-  <!-- 19:30 -->
-  <div class="slot">
-    <div class="slot-header">
-      <div class="slot-time">19:30</div>
-      <div class="slot-title">Show Capital Inicial <span class="slot-stars">opcional</span></div>
-    </div>
-    <div class="slot-body">
-      <p>Palco Principal — networking informal.</p>
-    </div>
+  <div class="why">
+    <span class="why-label">Por que obrigatório</span>
+    Dor #2 da i2: DDoS atual insatisfatório. Raphael Rodrigues é referência brasileira em Flowspec — o painel cobre a stack open completa (Wanguard + NetFlow + Flowspec) que substitui solução comercial sem cair em vendor lock-in. Cleiberson e Patrick precisam ouvir juntos pra alinhar a próxima decisão.
   </div>
-
-  <!-- ALERTAS -->
-  <div class="callout callout-warn">
-    <strong>Huge Networks</strong> — não citar para ninguém de DDoS/segurança. Falar: <em>"Estamos avaliando opções."</em>
-  </div>
-  <div class="callout callout-warn">
-    <strong>Algar / Alares</strong> — não revelar dados estratégicos (M&amp;A ativo).
-  </div>
-  <div class="callout callout-warn">
-    <strong>Computize G23</strong> — só ouvir, não contratar (Krebs on Security).
-  </div>
-  <div class="callout callout-good">
-    <strong>App AGC</strong> — leitor de QR para capturar contato em 1 clique. Usar em todos os estandes.
-  </div>
-
-  <!-- CHECKLIST -->
-  <div class="checklist">
-    <h3>Checklist do dia 7</h3>
-
-    <h4>Painéis</h4>
-    <label><input type="checkbox"><span>10h — IA como vetor estratégico (Inatel)</span></label>
-    <label><input type="checkbox"><span>11h — DDoS/Wanguard/Flowspec ★★★ obrigatório</span></label>
-    <label><input type="checkbox"><span>12h — Vendor lock-in e padrões abertos</span></label>
-    <label><input type="checkbox"><span>14h — Cyber resilience (Cleiberson)</span></label>
-    <label><input type="checkbox"><span>15h — Observabilidade ★★★ obrigatório</span></label>
-
-    <h4>Estandes</h4>
-    <label><input type="checkbox"><span>AVSystem B13 — pergunta de auto-discovery</span></label>
-    <label><input type="checkbox"><span>Auben Networks A04</span></label>
-    <label><input type="checkbox"><span>Inatel B14 (FibrIA)</span></label>
-    <label><input type="checkbox"><span>Alares C04 — DDoS (sem citar Huge)</span></label>
-    <label><input type="checkbox"><span>Time is Money — cobrança</span></label>
-    <label><input type="checkbox"><span>Backbone: E08, G16, G18 (preço)</span></label>
-    <label><input type="checkbox"><span>MVNO cluster: F05, F15, G02, I11</span></label>
-
-    <h4>Captura</h4>
-    <label><input type="checkbox"><span>3 áudios de síntese gravados</span></label>
-    <label><input type="checkbox"><span>Áudios enviados para Gabriel</span></label>
-  </div>
-
-  <a href="ROTEIRO-DIA-6.html" class="nav-link secondary">← Dia 6</a>
-
 </div>
 
-<!-- FOOTER -->
+<!-- 12:00 VENDOR LOCK-IN -->
+<div class="slot">
+  <div class="slot-head">
+    <div class="slot-time">12:00</div>
+    <div class="slot-title">Vendor lock-in e padrões abertos</div>
+    <div class="slot-stars">★★</div>
+  </div>
+  <div class="slot-body">
+    <p><strong>Gaspare Bruno</strong> (Anlix) + <strong>Francisco de Carvalho</strong> (Broadband Forum) + <strong>Nélio Júnior</strong> (G3 Telecom) · Plen. Conectividade · 12:00–12:50</p>
+    <div class="split">
+      <div class="split-c">
+        <div class="split-c-who">Cleiberson</div>
+        <div class="split-c-what"><strong>No painel</strong><br>TR-369/USP, padrões abertos. Pós-painel: abordar Gaspare (Anlix) sobre integração com OLT Huawei.</div>
+      </div>
+      <div class="split-c alt">
+        <div class="split-c-who">Patrick (paralelo)</div>
+        <div class="split-c-what"><strong>Estande A04 Auben</strong><br>Aprofundar conversa de manhã, mapear funcionalidades antes do painel das 15h.</div>
+      </div>
+    </div>
+    <div class="why">
+      <span class="why-label">Por que ir</span>
+      TR-369 é o caminho técnico do auto-discovery — conecta direto com o que AVSystem está vendendo no B13. Anlix faz CPE com firmware aberto, Broadband Forum define o padrão. Decisão de longo prazo de stack passa por entender isso.
+    </div>
+  </div>
+</div>
+
+<!-- 12:50 ALMOÇO + ESTANDES -->
+<div class="slot">
+  <div class="slot-head">
+    <div class="slot-time">12:50<span class="slot-time-end">→14:00</span></div>
+    <div class="slot-title">Almoço + estandes (vendedor com tempo)</div>
+  </div>
+  <div class="slot-body">
+    <p>Janela boa pra fechar conversas de manhã com tempo de qualidade.</p>
+    <div class="estande-list">
+      <div class="estande-item">
+        <div class="estande-tag">B13</div>
+        <div class="estande-info">
+          <div class="estande-name">AVSystem</div>
+          <div class="estande-desc">Fechar a conversa: pedir trial / POC com OLT Huawei. Pegar contato técnico.</div>
+        </div>
+      </div>
+      <div class="estande-item">
+        <div class="estande-tag">B14</div>
+        <div class="estande-info">
+          <div class="estande-name">Inatel</div>
+          <div class="estande-desc">Aprofundar FibrIA pós-painel do Ranyeri. Perguntar sobre pilot com provedor parecido com a i2.</div>
+        </div>
+      </div>
+      <div class="estande-item">
+        <div class="estande-tag">B08</div>
+        <div class="estande-info">
+          <div class="estande-name">Padtec</div>
+          <div class="estande-desc">Backbone óptico nacional. Pegar tabela e cartão.</div>
+        </div>
+      </div>
+    </div>
+    <div class="why">
+      <span class="why-label">Por que agora</span>
+      Hora do almoço o pessoal de palco fica livre, vendedor de estande relaxa, conversa técnica fica mais profunda. É quando o cartão vira contato real.
+    </div>
+  </div>
+</div>
+
+<!-- 14:00 SPLIT -->
+<div class="slot">
+  <div class="slot-head">
+    <div class="slot-time">14:00</div>
+    <div class="slot-title">Split — Cleiberson palco / Patrick estandes</div>
+    <div class="slot-stars">★★</div>
+  </div>
+  <div class="slot-body">
+    <div class="split">
+      <div class="split-c">
+        <div class="split-c-who">Cleiberson</div>
+        <div class="split-c-what"><strong>Cyber resilience</strong><br>Sérgio Simas (Forte Telecom) · Plen. Inovação · 14:00–14:50</div>
+      </div>
+      <div class="split-c alt">
+        <div class="split-c-who">Patrick</div>
+        <div class="split-c-what"><strong>Estandes</strong><br>C04 Alares (DDoS, sem citar Huge) + backbone E08 / G18 / I06 / H20</div>
+      </div>
+    </div>
+    <div class="why">
+      <span class="why-label">Por que split</span>
+      Cyber resilience cobre tema de continuidade que o dono valoriza — Cleiberson volta com discurso pronto pro Gabriel. Patrick paralelo otimiza o tempo varrendo estandes de DDoS e backbone que não cabem em outro horário do dia.
+    </div>
+    <div class="callout">ZTE Summit (Plen. Conectividade · 14h–17h50) é o "elefante" do dia — bloco técnico longo. Como a i2 é Huawei, vale só uma passada de 15min entre 14h-14h30 pra ouvir tendências de OLT/GPON. Não fica preso lá.</div>
+  </div>
+</div>
+
+<!-- 15:00 OBSERVABILIDADE OBRIGATÓRIO -->
+<div class="slot">
+  <div class="slot-head">
+    <div class="slot-time">15:00</div>
+    <div class="slot-title">Painel obrigatório · juntos</div>
+    <div class="slot-stars">★★★</div>
+  </div>
+  <div class="panel">
+    <span class="br"></span>
+    <div class="panel-tag">Prioridade #1 · Observabilidade</div>
+    <h3 class="panel-title">Observabilidade de redes</h3>
+    <div class="panel-meta"><strong>Guillermo Trigo</strong> · Auben Networks<br>Plenária Técnica – Inovação · 15:00–16:00<br><strong>Estande Auben: A04</strong></div>
+    <div class="panel-body">
+      <p><strong>Após o painel — abordar Guillermo pessoalmente:</strong></p>
+      <ul>
+        <li>"Vocês conseguem ler OLT Huawei em profundidade ou só superficial via SNMP?"</li>
+        <li>"Como o produto se compara a NMS proprietário da Huawei na prática?"</li>
+        <li>"Tem case de provedor médio brasileiro com volume parecido com o nosso?"</li>
+      </ul>
+    </div>
+  </div>
+  <div class="why">
+    <span class="why-label">Por que obrigatório</span>
+    Dor #3 da i2: NMS atual incompleto, leitura de rede parcial. Auben (A04) é a empresa que mais conecta com observabilidade de verdade. Painel + abordagem pós-palco = conversa técnica direta com o CEO da empresa, sem filtro de vendedor.
+  </div>
+</div>
+
+<!-- 15:15 CEO TALK opcional Cleiberson -->
+<div class="slot">
+  <div class="slot-head">
+    <div class="slot-time">15:15</div>
+    <div class="slot-title">CEO Talk dia 7</div>
+    <div class="slot-opt">opcional Cleiberson</div>
+  </div>
+  <div class="slot-body">
+    <p><strong>Palco Principal 360°</strong> · 15:15–16:05<br>Gustavo Stock, Breno Vale, Denis Ferreira, Fabiano Ferreira, Patrick Canton.</p>
+    <div class="why">
+      <span class="why-label">Por que considerar</span>
+      Networking com CEOs de provedores grandes (Algar incluso). Mas conflita com Observabilidade — só uma das duas pessoas considera, e somente se já tiver fechado a conversa com Guillermo.
+    </div>
+    <div class="callout callout-warn"><strong>Atenção Algar:</strong> não revelar dados estratégicos da i2 (M&amp;A ativo).</div>
+  </div>
+</div>
+
+<!-- 16:00 BLOCO ESTANDES -->
+<div class="slot">
+  <div class="slot-head">
+    <div class="slot-time">16:00<span class="slot-time-end">→18:00</span></div>
+    <div class="slot-title">Bloco estandes restantes</div>
+  </div>
+  <div class="slot-body">
+    <p><strong>Cluster MVNO</strong> (varrer em sequência, 10 min cada):</p>
+    <div class="estande-list">
+      <div class="estande-item"><div class="estande-tag">F05</div><div class="estande-info"><div class="estande-name">Surf Telecom</div><div class="estande-desc">MVNO operadora — modelo comercial e ticket</div></div></div>
+      <div class="estande-item"><div class="estande-tag">F15</div><div class="estande-info"><div class="estande-name">TIP Brasil</div><div class="estande-desc">MVNE — comparação com Surf</div></div></div>
+      <div class="estande-item"><div class="estande-tag">G02</div><div class="estande-info"><div class="estande-name">Bora Telecom</div><div class="estande-desc">MVNO mid-market</div></div></div>
+      <div class="estande-item"><div class="estande-tag">I11</div><div class="estande-info"><div class="estande-name">Braz Móvel</div><div class="estande-desc">Mesmo papo (Jamyson Machado palestrou dia 6)</div></div></div>
+    </div>
+    <p style="margin-top: 12px;"><strong>Outros prioritários:</strong></p>
+    <ul>
+      <li><strong>Wi-Fi premium</strong> — distribuidores Wi-Fi 6E / 7</li>
+      <li><strong>Time is Money</strong> — cobrança (Gabriel pediu parada obrigatória, rápida)</li>
+      <li><strong>A22 Elea Data Centers</strong> — datacenter neutro, pós-M&amp;A I Squared US$10 bi</li>
+      <li><strong>B36 Venko</strong> — IA aplicada (opcional, se sobrar tempo)</li>
+    </ul>
+    <div class="why">
+      <span class="why-label">Por que este bloco</span>
+      Cobre dor 6-9 do briefing: MVNO, Wi-Fi premium, cobrança, datacenter. Tudo de uma só vez, vendedor cansado mas disponível, fim de tarde rende contato sem promessa exagerada.
+    </div>
+  </div>
+</div>
+
+<!-- 17:00 OPCIONAL IA REGULATÓRIA -->
+<div class="slot">
+  <div class="slot-head">
+    <div class="slot-time">17:00</div>
+    <div class="slot-title">IA e maturidade regulatória</div>
+    <div class="slot-opt">opcional</div>
+  </div>
+  <div class="slot-body">
+    <p><strong>Paulo Tobias + Alda Rodrigues</strong> (Anatel) · Plen. Inovação · 17:00–17:50</p>
+    <div class="why">
+      <span class="why-label">Por que considerar</span>
+      Anatel falando de IA — sinal de regulação que vem aí. Útil só se sobrar energia. Se a galera estiver gasta, pular sem culpa: o conteúdo importante do dia já foi.
+    </div>
+  </div>
+</div>
+
+<!-- 17:50 SÍNTESE -->
+<div class="slot">
+  <div class="slot-head">
+    <div class="slot-time">17:50</div>
+    <div class="slot-title">Síntese do dia · 3 áudios</div>
+  </div>
+  <div class="slot-body">
+    <ul>
+      <li><strong>Áudio 1 — Descobertas:</strong> o que mais surpreendeu hoje? Empresa, produto, abordagem?</li>
+      <li><strong>Áudio 2 — Insights técnicos:</strong> dos 3 painéis (DDoS, Vendor lock-in, Observabilidade) — qual decisão técnica o Gabriel precisa tomar?</li>
+      <li><strong>Áudio 3 — Follow-up:</strong> com quem agendar conversa pós-evento? Quais POCs/trials pedir?</li>
+    </ul>
+    <p>Enviar os 3 pra Gabriel no WhatsApp.</p>
+    <div class="why">
+      <span class="why-label">Por que 3 áudios separados</span>
+      Memória curta no dia agitado. Separar em 3 temas (descobertas / insights / follow-up) força priorização e dá ao Gabriel material direto pra decisão. Áudio quente captura o que noite apaga.
+    </div>
+  </div>
+</div>
+
+<!-- 19:30 SHOW -->
+<div class="slot">
+  <div class="slot-head">
+    <div class="slot-time">19:30</div>
+    <div class="slot-title">Show Capital Inicial</div>
+    <div class="slot-opt">opcional</div>
+  </div>
+  <div class="slot-body">
+    <p>Palco Principal 360° · 19:30–21:30</p>
+    <div class="why">
+      <span class="why-label">Por que considerar</span>
+      Networking informal de fim de evento. Não obrigatório. Se cansaço falar mais alto, dormir cedo pra render no dia 8 (Inatel FibrIA é o painel mais importante de toda a viagem).
+    </div>
+  </div>
+</div>
+
+<!-- ALERTAS -->
+<div class="alerts-box">
+  <div class="alerts-title">⚠ Alertas de campo</div>
+  <div class="alert-item">
+    <strong>Não citar Huge Networks</strong>
+    Para ninguém de DDoS/segurança (incluindo Raphael Rodrigues, Flowspec). Falar: "Estamos avaliando opções."
+  </div>
+  <div class="alert-item">
+    <strong>Algar / Alares</strong>
+    Não revelar dados estratégicos da i2 (M&amp;A ativo). Vale para CEO Talk e estande C04.
+  </div>
+  <div class="alert-item">
+    <strong>Computize G23</strong>
+    Krebs on Security (abr/2026). Só ouvir, não contratar.
+  </div>
+</div>
+
+<!-- CHECKLIST -->
+<div class="checklist">
+  <div class="checklist-title">Checklist do dia 7</div>
+  <label><input type="checkbox"><span>Visitou AVSystem (B13), Inatel (B14) e Auben (A04) antes das 10h</span></label>
+  <label><input type="checkbox"><span>Assistiu painel "IA como vetor estratégico" (Inatel · 10h)</span></label>
+  <label><input type="checkbox"><span>★★★ Assistiu DDoS com Raphael Rodrigues às 11h (juntos)</span></label>
+  <label><input type="checkbox"><span>Assistiu painel "Vendor lock-in" às 12h (Anlix/BBF)</span></label>
+  <label><input type="checkbox"><span>★★★ Assistiu Observabilidade com Guillermo Trigo às 15h (juntos)</span></label>
+  <label><input type="checkbox"><span>Abordou Guillermo (Auben) pessoalmente após o painel</span></label>
+  <label><input type="checkbox"><span>Cleiberson assistiu Cyber resilience (Forte) às 14h</span></label>
+  <label><input type="checkbox"><span>Patrick varreu estandes de backbone (E08/G18/I06/H20)</span></label>
+  <label><input type="checkbox"><span>Bateu o cluster MVNO (F05/F15/G02/I11)</span></label>
+  <label><input type="checkbox"><span>Parou em Time is Money (cobrança)</span></label>
+  <label><input type="checkbox"><span>Visitou A22 Elea Data Centers</span></label>
+  <label><input type="checkbox"><span>Gravou os 3 áudios de síntese pra Gabriel</span></label>
+</div>
+
+<a href="ROTEIRO-DIA-6.html" class="nav-link">← Dia 6</a>
+
+</div>
+<!-- FIM TAB 1 -->
+
+
+<!-- ============================================ -->
+<!-- TAB 2: TODAS AS PALESTRAS DIA 7 -->
+<!-- ============================================ -->
+<div class="tab-todas">
+
+<div class="legend">
+  <div class="legend-item"><span class="legend-stars">★★★</span> obrigatório</div>
+  <div class="legend-item"><span class="legend-stars s2">★★</span> muito relevante</div>
+  <div class="legend-item"><span class="legend-stars s1">★</span> interessante</div>
+  <div class="legend-item"><span class="session-skip">—</span> baixa relevância</div>
+</div>
+
+<p style="font-size: 13px; color: var(--i2-text-dim); margin-bottom: 16px; line-height: 1.55;">
+  Grade completa do dia 7. Marcação alinhada à dor da i2: OLT Huawei, automação, DDoS, observabilidade, IA preditiva.
+</p>
+
+<!-- 10h -->
+<div class="day-section">
+  <div class="day-section-title">10:00</div>
+
+  <div class="session rec-2"><div class="session-time">10:00</div><div class="session-info"><span class="session-stars">★★</span><div class="session-title">IA como vetor estratégico para ISPs</div><div class="session-meta">Ranyeri do Lago Rocha (Inatel) · Área Azul</div><div class="session-why">Mesma empresa do estande B14 (FibrIA). Casos reais de IA em ISPs brasileiros — não é teoria.</div></div></div>
+
+  <div class="session rec-1"><div class="session-time">10:00</div><div class="session-info"><span class="session-stars">★</span><div class="session-title">Conectando academia, startups e mercado</div><div class="session-meta">Eduardo Grizendi + Daniel Marques + Rafael Valle (RNP) · Plen. Inovação</div><div class="session-why">RNP fala de inovação aplicada — bom termômetro de tendência tecnológica nacional.</div></div></div>
+
+  <div class="session rec-0"><div class="session-time">10:00</div><div class="session-info"><span class="session-skip">—</span> <span class="session-title" style="display: inline;">O futuro do SCM</span><div class="session-meta">Janyel Leite + José Borges + outros · Área Laranja</div></div></div>
+
+  <div class="session rec-0"><div class="session-time">10:00</div><div class="session-info"><span class="session-skip">—</span> <span class="session-title" style="display: inline;">Erros trabalhistas em ISPs</span><div class="session-meta">Bárbara Antunes (Silva Vitor) · Área Roxo</div></div></div>
+
+  <div class="session rec-0"><div class="session-time">10:00</div><div class="session-info"><span class="session-skip">—</span> <span class="session-title" style="display: inline;">Tributação pós-NFCom</span><div class="session-meta">Luciano Franz (DigiLivro) · Plen. Conectividade</div></div></div>
+
+  <div class="session rec-0"><div class="session-time">10:00</div><div class="session-info"><span class="session-skip">—</span> <span class="session-title" style="display: inline;">Liderança comercial</span><div class="session-meta">Ludio Porto Alegre · Área Amarelo</div></div></div>
+</div>
+
+<!-- 11h -->
+<div class="day-section">
+  <div class="day-section-title">11:00 — slot crítico</div>
+
+  <div class="session rec-3"><div class="session-time">11:00</div><div class="session-info"><span class="session-stars">★★★</span><div class="session-title">Mitigação de DDoS · Wanguard / NetFlow / IPFIX / BGP Flowspec</div><div class="session-meta">Raphael Rodrigues (Flowspec Solutions) · Plen. Conectividade</div><div class="session-why"><strong>OBRIGATÓRIO juntos.</strong> Dor #2 da i2 (DDoS). Raphael é referência brasileira em Flowspec — stack open completa sem vendor lock-in.</div></div></div>
+
+  <div class="session rec-0"><div class="session-time">11:00</div><div class="session-info"><span class="session-skip">—</span> <span class="session-title" style="display: inline;">Superação de desafios</span><div class="session-meta">Tande · Palco Principal</div></div></div>
+
+  <div class="session rec-0"><div class="session-time">11:00</div><div class="session-info"><span class="session-skip">—</span> <span class="session-title" style="display: inline;">Litígios e alívio financeiro</span><div class="session-meta">Thiago Chaves (Silva Vitor) · Plen. Inovação</div></div></div>
+</div>
+
+<!-- 12h -->
+<div class="day-section">
+  <div class="day-section-title">12:00</div>
+
+  <div class="session rec-2"><div class="session-time">12:00</div><div class="session-info"><span class="session-stars">★★</span><div class="session-title">Vendor lock-in e padrões abertos</div><div class="session-meta">Gaspare Bruno (Anlix) + Francisco de Carvalho (BBF) + Nélio Júnior (G3) · Plen. Conectividade</div><div class="session-why">TR-369/USP, padrões abertos para CPE — decisão de longo prazo de stack. Conecta com AVSystem (B13).</div></div></div>
+
+  <div class="session rec-0"><div class="session-time">12:00</div><div class="session-info"><span class="session-skip">—</span> <span class="session-title" style="display: inline;">Reforma tributária e ISPs</span><div class="session-meta">Theodoro Barbosa · Plen. Inovação</div></div></div>
+</div>
+
+<!-- 12:10 -->
+<div class="day-section">
+  <div class="day-section-title">12:10</div>
+
+  <div class="session rec-1"><div class="session-time">12:10</div><div class="session-info"><span class="session-stars">★</span><div class="session-title">Segurança da infraestrutura digital</div><div class="session-meta">José Anchiêta Nery Neto + Bruna Toso + Luiz Fernando Moraes + Aristóteles Dantas + Paloma Mansano · Área Laranja</div><div class="session-why">Tema regulatório de proteção de infra crítica — relevante mas conflita com almoço-estandes.</div></div></div>
+
+  <div class="session rec-0"><div class="session-time">12:10</div><div class="session-info"><span class="session-skip">—</span> <span class="session-title" style="display: inline;">Atendimento que dá lucro</span><div class="session-meta">Robson Costa (BoraEncantar) · Área Azul</div></div></div>
+
+  <div class="session rec-0"><div class="session-time">12:10</div><div class="session-info"><span class="session-skip">—</span> <span class="session-title" style="display: inline;">Pequenos provedores, grandes resultados</span><div class="session-meta">Rogério Couto · Área Roxo</div></div></div>
+
+  <div class="session rec-0"><div class="session-time">12:10</div><div class="session-info"><span class="session-skip">—</span> <span class="session-title" style="display: inline;">Conectividade na Amazônia</span><div class="session-meta">Moisés Moreira + outros · Área Amarelo</div></div></div>
+</div>
+
+<!-- 13h -->
+<div class="day-section">
+  <div class="day-section-title">13:00</div>
+
+  <div class="session rec-2"><div class="session-time">13:00</div><div class="session-info"><span class="session-stars">★★</span><div class="session-title">Eficiência com infraestrutura ociosa</div><div class="session-meta">Carlos Moritz (FiberShare) · Plen. Conectividade</div><div class="session-why">Compartilhamento e monetização de capacidade ociosa — alavanca de margem para ISP médio.</div></div></div>
+
+  <div class="session rec-0"><div class="session-time">13:00</div><div class="session-info"><span class="session-skip">—</span> <span class="session-title" style="display: inline;">Marketing e crescimento</span><div class="session-meta">Thiago Barbosa David · Plen. Inovação</div></div></div>
+</div>
+
+<!-- 13:10 -->
+<div class="day-section">
+  <div class="day-section-title">13:10</div>
+
+  <div class="session rec-1"><div class="session-time">13:10</div><div class="session-info"><span class="session-stars">★</span><div class="session-title">Futuro dos MVNOs</div><div class="session-meta">Alexandre Alves + Fernando Paiva + Vinicius Caram + Rogério Moreira + outros · Área Amarelo</div><div class="session-why">Painel multidisciplinar de MVNO — útil pra entender a frente que o Gabriel quer abrir.</div></div></div>
+
+  <div class="session rec-0"><div class="session-time">13:10</div><div class="session-info"><span class="session-skip">—</span> <span class="session-title" style="display: inline;">Venda de provedores</span><div class="session-meta">Roberto Valverde · Área Azul</div></div></div>
+
+  <div class="session rec-0"><div class="session-time">13:10</div><div class="session-info"><span class="session-skip">—</span> <span class="session-title" style="display: inline;">OTT, custos e regulação</span><div class="session-meta">Alessandro Molon + Wardner Maia + outros · Área Laranja</div></div></div>
+
+  <div class="session rec-0"><div class="session-time">13:10</div><div class="session-info"><span class="session-skip">—</span> <span class="session-title" style="display: inline;">Crédito para telecom</span><div class="session-meta">Fabio Badra + Tiago Prado + outros · Área Roxo</div></div></div>
+</div>
+
+<!-- 14h -->
+<div class="day-section">
+  <div class="day-section-title">14:00 — slot denso</div>
+
+  <div class="session rec-2"><div class="session-time">14:00</div><div class="session-info"><span class="session-stars">★★</span><div class="session-title">Cyber resilience</div><div class="session-meta">Sérgio Simas (Forte Telecom) · Plen. Inovação</div><div class="session-why">Continuidade operacional. Sugerido para Cleiberson (Patrick paralelo nos estandes).</div></div></div>
+
+  <div class="session rec-2"><div class="session-time">14:00</div><div class="session-info"><span class="session-stars">★★</span><div class="session-title">ZTE ISP Industry Summit 2026 (bloco 14h–17h50)</div><div class="session-meta">Felipe Del Ré (ZTE) + convidados · Plen. Conectividade</div><div class="session-why">Bloco técnico longo de fornecedor de OLT. Como i2 é Huawei, vale só passada de 15 min — informativo, não obrigatório.</div></div></div>
+
+  <div class="session rec-0"><div class="session-time">14:10</div><div class="session-info"><span class="session-skip">—</span> <span class="session-title" style="display: inline;">A tempestade perfeita</span><div class="session-meta">Gustavo Caetano (Samba Tech) · Palco Principal</div></div></div>
+</div>
+
+<!-- 15h -->
+<div class="day-section">
+  <div class="day-section-title">15:00 — slot crítico</div>
+
+  <div class="session rec-3"><div class="session-time">15:00</div><div class="session-info"><span class="session-stars">★★★</span><div class="session-title">Observabilidade de redes</div><div class="session-meta">Guillermo Trigo (Auben Networks · estande A04) · Plen. Inovação</div><div class="session-why"><strong>OBRIGATÓRIO juntos.</strong> Dor #3 da i2 (NMS incompleto). Após o painel: abordar Guillermo pessoalmente — CEO da Auben sem filtro de vendedor.</div></div></div>
+
+  <div class="session rec-1"><div class="session-time">15:15</div><div class="session-info"><span class="session-stars">★</span><div class="session-title">CEO Talk dia 7</div><div class="session-meta">Gustavo Stock + Breno Vale + Denis Ferreira + Fabiano Ferreira + Patrick Canton · Palco Principal</div><div class="session-why">Networking de CEOs. Conflita com Observabilidade — só se um liberar pós-conversa com Guillermo.</div></div></div>
+</div>
+
+<!-- 16h -->
+<div class="day-section">
+  <div class="day-section-title">16:00</div>
+
+  <div class="session rec-0"><div class="session-time">16:00</div><div class="session-info"><span class="session-skip">—</span> <span class="session-title" style="display: inline;">O vendedor bom de bola</span><div class="session-meta">Erison Santos · Plen. Inovação</div></div></div>
+
+  <div class="session rec-0"><div class="session-time">16:15</div><div class="session-info"><span class="session-skip">—</span> <span class="session-title" style="display: inline;">Mentalidade disruptiva</span><div class="session-meta">Kaká Diniz · Palco Principal</div></div></div>
+</div>
+
+<!-- 17h -->
+<div class="day-section">
+  <div class="day-section-title">17:00</div>
+
+  <div class="session rec-1"><div class="session-time">17:00</div><div class="session-info"><span class="session-stars">★</span><div class="session-title">IA e maturidade regulatória</div><div class="session-meta">Paulo Tobias + Alda Rodrigues (Anatel) · Plen. Inovação</div><div class="session-why">Anatel falando de IA — sinal de regulação que vem aí. Útil só se sobrar energia.</div></div></div>
+</div>
+
+<!-- 19:30 -->
+<div class="day-section">
+  <div class="day-section-title">19:30 — encerramento</div>
+
+  <div class="session rec-0"><div class="session-time">19:30</div><div class="session-info"><span class="session-skip">—</span> <span class="session-title" style="display: inline;">Show Capital Inicial</span><div class="session-meta">Palco Principal 360° · 19:30–21:30</div><div class="session-why">Networking informal. Opcional — pular sem culpa se cansaço falar mais alto.</div></div></div>
+</div>
+
+</div>
+<!-- FIM TAB 2 -->
+
+</div>
+<!-- FIM tab-content -->
+
 <footer class="foot">
-  <p><strong>i2 Fibra</strong> — Vamos juntos crescer e conectar pessoas.</p>
-  <p style="margin-top: 6px; opacity: 0.7;">AGC 2026 · Distrito Anhembi · Pavilhões 4 e 5</p>
+  <div class="foot-line">i2 Platform · <strong>Vamos juntos crescer e conectar pessoas</strong></div>
+  <div class="foot-line" style="margin-top:6px;">AGC 2026 · Distrito Anhembi · Pavilhões 4 e 5</div>
 </footer>
 
 </div>
+<!-- FIM wrap -->
+
+<!-- STICKY BAR -->
+<div class="sticky-now">
+  <div class="pulse"></div>
+  <div class="sticky-label">Agora</div>
+  <div class="sticky-text" id="now-text">—</div>
+</div>
+
+<script>
+const slots = [
+  { s: "00:00", e: "08:59", t: "Antes do evento" },
+  { s: "09:00", e: "09:59", t: "Estandes sem fila · AVSystem/Auben/Inatel" },
+  { s: "10:00", e: "10:49", t: "★★ IA como vetor estratégico (Inatel)" },
+  { s: "10:50", e: "10:59", t: "Ir para Plenária Conectividade" },
+  { s: "11:00", e: "11:49", t: "★★★ Mitigação de DDoS · OBRIGATÓRIO" },
+  { s: "11:50", e: "11:59", t: "Mesmo palco · próximo painel" },
+  { s: "12:00", e: "12:49", t: "★★ Vendor lock-in · Anlix/BBF" },
+  { s: "12:50", e: "13:59", t: "Almoço + estandes B13/B14/B08" },
+  { s: "14:00", e: "14:49", t: "SPLIT · Cleiberson Cyber / Patrick estandes" },
+  { s: "14:50", e: "14:59", t: "Reagrupar · Plenária Inovação" },
+  { s: "15:00", e: "15:59", t: "★★★ Observabilidade Auben · OBRIGATÓRIO" },
+  { s: "16:00", e: "17:59", t: "MVNO + Wi-Fi + Time is Money + Elea" },
+  { s: "18:00", e: "18:30", t: "Síntese · 3 áudios" },
+  { s: "18:31", e: "19:30", t: "Encerrando · Show Capital opcional" },
+  { s: "19:31", e: "23:59", t: "Encerrado · enviar áudios" }
+];
+function update() {
+  const now = new Date().toTimeString().slice(0,5);
+  const slot = slots.find(s => now >= s.s && now <= s.e) || slots[0];
+  document.getElementById('now-text').textContent = slot.t;
+}
+update(); setInterval(update, 30000);
+</script>
 </body>
 </html>
